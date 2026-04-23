@@ -16,10 +16,11 @@ build/
 *.tsbuildinfo
 
 # Env / Secrets (Keychain 우선, .env는 fallback)
+# NOTE: do NOT use bare `secrets/` — it accidentally matches `core/secrets/` (the wrapper module)
 .env
 .env.*
 !.env.example
-secrets/
+/secrets/
 *.secret
 *.key
 *.pem
