@@ -1,0 +1,23 @@
+{
+  "_comment": "Copy this to ~/Project/AIZen/data/profiles/family.json and edit. data/profiles/family.json is gitignored (private data).",
+  "people": [
+    {
+      "id": "father",
+      "name": "아빠",
+      "relationship": "father",
+      "lunar_birthday": "8/15",
+      "preferences": ["등산", "건강식", "낚시"],
+      "allergies": [],
+      "budget": [50000, 150000]
+    },
+    {
+      "id": "mother",
+      "name": "엄마",
+      "relationship": "mother",
+      "lunar_birthday": "3/21",
+      "preferences": ["꽃", "영화", "한식"],
+      "allergies": ["땅콩"],
+      "budget": [50000, 200000]
+    }
+  ]
+}

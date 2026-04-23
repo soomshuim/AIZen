@@ -1,0 +1,25 @@
+{
+  "name": "aizen",
+  "version": "0.1.0",
+  "description": "Personal Automation OS for @zen — extensible Korean life concierge built on OpenClaw",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "scripts": {
+    "secrets:check": "tsx core/secrets/check.ts",
+    "skill:test": "tsx --test skills/**/tests/*.test.ts",
+    "skill:new": "tsx core/self-bootstrapping/scaffold.ts",
+    "lunar:test": "tsx skills/zen-lunar-birthday/handler.ts --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "lunar-javascript": "^1.7.0"
+  }
+}
