@@ -64,6 +64,7 @@ export async function hasSecret(key: string): Promise<boolean> {
 
 export const SECRETS = {
   ANTHROPIC_API_KEY: "ANTHROPIC_API_KEY",
+  OPENAI_API_KEY: "OPENAI_API_KEY",
   TELEGRAM_BOT_TOKEN: "TELEGRAM_BOT_TOKEN",
   GITHUB_TOKEN: "GITHUB_TOKEN",
   PUBLIC_DATA_API_KEY: "PUBLIC_DATA_API_KEY",

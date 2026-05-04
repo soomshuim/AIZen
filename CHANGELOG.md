@@ -26,18 +26,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **OpenClaw 2026.4.21** installed globally (`/opt/homebrew/bin/openclaw`)
   - Verified repo activity: 362,593 stars / 74,078 forks / MIT / TypeScript / pushed today
   - Decision: glob CLI install + AIZen as independent SKILL/config repo (no fork/subtree)
+- **Local runtime refresh** — resumed AIZen at `/Users/zen/Project/AIZen`.
+  - Installed `pnpm@10.33.1` and OpenClaw `2026.5.3-1`.
+  - Installed dependencies with `pnpm install --frozen-lockfile`.
+  - Added `docs/openclaw-setup.md` for loopback/token gateway setup.
+  - Added `skills/zen-lunar-birthday/lunar-javascript.d.ts` for TypeScript compatibility.
+  - Added `core/secrets/check.ts` and `OPENAI_API_KEY` to the Keychain secret registry.
 
 ### Verified
 
 - `pnpm tsx skills/zen-lunar-birthday/handler.ts --test` — lunar-javascript import + TypeScript execution OK
-- `security find-generic-password ANTHROPIC_API_KEY` — already in macOS Keychain ✅
-- `openclaw status` — CLI works, daemon onboard pending
+- `pnpm -s typecheck` — PASS
+- `pnpm -s lunar:test` — PASS (0 family profiles until private data is added)
+- `openclaw gateway health` — local gateway reachable at `127.0.0.1:18789`
+- `openclaw security audit` — 0 critical, 1 warning (`gateway.trusted_proxies_missing`; non-blocking while loopback-only)
+- `pnpm -s secrets:check` — expected non-zero until required Keychain secrets are stored
 
 ### Pending (next session)
 
-- User action: Telegram bot token via @BotFather → Keychain save
+- User action: store `ANTHROPIC_API_KEY` and `TELEGRAM_BOT_TOKEN` in macOS Keychain
+- User action: optional `OPENAI_API_KEY`, `GITHUB_TOKEN`, `PUBLIC_DATA_API_KEY` as needed
 - User action: family birthday data → `data/profiles/family.json`
-- User action: `openclaw onboard --install-daemon` (interactive)
 - Telegram bot hello-world
 - zen-lunar-birthday end-to-end with real data
 - Self-bootstrapping layer (`/aizen-new` workflow implementation)

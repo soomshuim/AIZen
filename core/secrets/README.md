@@ -36,7 +36,8 @@ security dump-keychain | grep -E '"svce".*"ANTHROPIC|TELEGRAM|GITHUB|PUBLIC_DATA
 
 | Key | 용도 | 발급 |
 |-----|------|------|
-| `ANTHROPIC_API_KEY` | Claude API | console.anthropic.com ✅ 저장됨 |
+| `ANTHROPIC_API_KEY` | Claude API | console.anthropic.com |
+| `OPENAI_API_KEY` | OpenAI API 또는 OpenClaw provider fallback | platform.openai.com |
 | `TELEGRAM_BOT_TOKEN` | Telegram 봇 (1차 채널) | t.me/BotFather (W1) |
 | `GITHUB_TOKEN` | GitHub API (PR/Issue SKILL) | github.com/settings/tokens (필요 시) |
 | `PUBLIC_DATA_API_KEY` | 공공데이터포털 (청약) | data.go.kr (W2) |

@@ -1,20 +1,25 @@
 ---
-HANDOFF: Codex -> Zen (Mac mini 재개)
-Date: 2026-05-04 21:45:00
-Project: /Users/zenkim_office/Project/AIZen
+HANDOFF: Codex -> Zen
+Date: 2026-05-04 22:12:00
+Project: /Users/zen/Project/AIZen
 Agent: Codex
-Summary: `-play`로 OpenClaw setup plan/review 산출물을 만들고, `-director`로 현재 MacBook Pro에서 local/loopback/token gateway Phase 1-2를 임시 검증했다. LaunchAgent running, RPC health ok, security audit critical 0. 단, 실제 운영 서버는 Mac mini로 결정했으므로 provider/API key/Telegram/cron 최종 설정은 Mac mini에서 이어가야 한다.
+Summary: `Zen의 Mac mini` / `Zenui-Macmini.local`의 `/Users/zen/Project/AIZen`에서 `-zen`을 재개했다. `pnpm@10.33.1`과 OpenClaw `2026.5.3-1`을 설치하고 `pnpm install --frozen-lockfile`을 완료했다. OpenClaw local/loopback/token gateway를 non-interactive onboard로 설치해 LaunchAgent running, gateway health OK 상태다. `lunar-javascript` declaration을 추가해 `pnpm -s typecheck`를 PASS로 복구했고, `docs/openclaw-setup.md`와 `core/secrets/check.ts`를 추가했다.
 Next-TODO:
-  1. Mac mini에서 `git pull` 후 AIZen repo 재개.
-  2. Mac mini에 OpenClaw CLI 설치/확인 후 local gateway onboard + LaunchAgent 설정.
-  3. Mac mini Keychain 또는 OpenClaw interactive setup으로 Anthropic/OpenAI API key 등록.
-  4. BotFather에서 `TELEGRAM_BOT_TOKEN` 발급 후 Mac mini Keychain 저장 및 Telegram channel 연결.
-  5. `pnpm -s typecheck` 실패 원인(`lunar-javascript` declaration 누락) 수정.
-  6. `docs/openclaw-setup.md` 생성으로 CLAUDE.md dead reference 해소.
-  7. Mac mini 운영 전환 후 현재 MacBook gateway는 `openclaw gateway stop` 또는 `openclaw gateway uninstall` 검토.
-Commits: (이번 커밋)
+  1. `pnpm -s secrets:check`가 PASS하도록 `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN`을 macOS Keychain에 저장.
+  2. 필요 시 `OPENAI_API_KEY`, `GITHUB_TOKEN`, `PUBLIC_DATA_API_KEY`도 Keychain에 저장.
+  3. `data/profiles/family.json`에 private family birthday data 작성 (`docs/sample-family.json` 참고).
+  4. Telegram bot channel 연결 + hello-world.
+  5. zen-lunar-birthday 실데이터 end-to-end 검증.
+  6. 최종 운영 장비가 현재 장비가 아니면 `docs/openclaw-setup.md` 순서대로 해당 장비에서 gateway를 재설정하고 현재 장비 gateway 정리.
+Commits: stage 1 commit in this changeset
 Plan-Run: .ai/pipeline/runs/20260504-211848_openclaw-setup-plan
 Review-Record: reviews/2026-05-04_openclaw-setup-director.md
+Verification:
+  - `pnpm -s typecheck`: PASS
+  - `pnpm -s lunar:test`: PASS (0 profiles)
+  - `openclaw gateway health`: OK
+  - `openclaw security audit`: critical 0, warn 1 (`gateway.trusted_proxies_missing`)
+  - `pnpm -s secrets:check`: expected FAIL until required Keychain secrets are stored
 ---
 
 ---
@@ -34,4 +39,15 @@ Next-TODO:
   7. (Claude) zen-chungyak-monitor SKILL 작성 (W2)
 Commits: (이번 커밋 — initial setup)
 Plan-Reference: ~/.claude/plans/aizen-elegant-stearns.md (v5.1)
+---
+
+---
+HANDOFF: Codex -> Claude (peer review)
+Date: 2026-05-05 01:32:25
+Project: /Users/zen/Project/AIZen
+Agent: Codex via peer-agent-review
+Summary: Stage 1 Claude peer review completed. Verdict: PASS. No blocking findings; only pre-existing info notes on handler path fragility and inert gitignore tilde comment.
+Next-TODO: Commit and push the stage 1 runtime bootstrap changes, then proceed to Keychain secrets.
+Review-Result: /Users/zen/Project/AIZen/.ai/peer-review/runs/20260505-013028-claude-review-12834.md
+Commits: stage 1 commit in this changeset
 ---

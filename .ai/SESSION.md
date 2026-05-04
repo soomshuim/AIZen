@@ -1,14 +1,14 @@
 # AIZen Session Memory
 
 > 세션 단기 기억 (compact 후 이어갈 내용)
-> Last updated: 2026-05-04 21:45
+> Last updated: 2026-05-04 22:12
 
 ---
 
 ## 프로젝트 개요
 
 **한 줄**: zen@plumlabs.im을 위한 확장 가능한 Personal Automation OS.
-**현재 단계**: W1 — 플랫폼 셋업 (Day 2 부분 완료, Mac mini 이관 대기)
+**현재 단계**: W1 — 플랫폼 셋업 (Day 2 로컬 런타임 부트스트랩 완료, 사용자 시크릿/실데이터 대기)
 **Plan**: `~/.claude/plans/aizen-elegant-stearns.md` (v5.1, 2026-04-23 승인)
 
 ---
@@ -41,7 +41,7 @@
 
 ---
 
-## Day 2 — 2026-05-04 (부분 완료)
+## Day 2 — 2026-05-04 (로컬 런타임 부트스트랩 완료)
 
 ### 완료된 작업
 
@@ -50,24 +50,28 @@
 | **AIZen 로드 커맨드 검증** | `-zen`으로 AIZen 컨텍스트 로드 완료 |
 | **OpenClaw setup plan** | `-play` 실행 → `.ai/pipeline/runs/20260504-211848_openclaw-setup-plan/` 생성, review PASS |
 | **Director 실행** | `-director`로 Phase 1-2 local gateway setup 실행/검증 |
-| **MacBook OpenClaw gateway** | `~/.openclaw/openclaw.json` local/loopback/token 설정, LaunchAgent running, RPC health ok |
-| **Security audit** | critical 0, warn 1 (`gateway.trustedProxies` — loopback-only에서는 blocker 아님) |
-| **AIZen smoke check** | `pnpm -s lunar:test` PASS (family profile 0개 안내), `pnpm -s typecheck` FAIL (`lunar-javascript` declaration 누락) |
+| **AIZen repo 재개** | `/Users/zen/Project/AIZen` clone/pull 완료, `main...origin/main` 동기화 |
+| **도구 설치** | `pnpm@10.33.1`, OpenClaw `2026.5.3-1` 설치 |
+| **의존성 설치** | `pnpm install --frozen-lockfile` 완료 |
+| **OpenClaw local gateway** | `~/.openclaw/openclaw.json` local/loopback/token 설정, LaunchAgent running, gateway health OK |
+| **Security audit** | critical 0, warn 1 (`gateway.trusted_proxies_missing` — loopback-only에서는 blocker 아님) |
+| **TypeScript 보강** | `lunar-javascript` declaration 추가 후 `pnpm -s typecheck` PASS |
+| **운영 문서 보강** | `docs/openclaw-setup.md` 생성으로 CLAUDE.md dead reference 해소 |
+| **시크릿 점검** | `core/secrets/check.ts` 추가. 필수 Keychain secret 누락 시 exit 1 |
 
 ### 중요한 운영 결정
 
-- 실제 OpenClaw 로컬 서버는 **현재 작업 중인 MacBook Pro가 아니라 Mac mini 기본형**으로 운영한다.
-- 따라서 MacBook에서 완료한 gateway setup은 임시 검증 상태로만 본다.
-- Provider API key, Telegram bot token, cron/launchd 운영 자동화는 Mac mini에서 최종 설정한다.
-- MacBook gateway는 혼선 방지를 위해 Mac mini 이관 후 `openclaw gateway stop` 또는 `openclaw gateway uninstall` 검토.
+- OpenClaw gateway는 **local / loopback / token auth / Tailscale off**를 기본 운영 정책으로 둔다.
+- provider API key와 Telegram token은 AIZen repo가 아니라 macOS Keychain에만 저장한다.
+- 현재 장비는 `Zen의 Mac mini` / `Zenui-Macmini.local`이며, 실운영 후보 장비에서 gateway 검증까지 완료했다.
+- 최종 운영 장비를 다시 바꾸면 `docs/openclaw-setup.md` 순서대로 해당 장비에서 재실행하고, 현재 장비 gateway는 `openclaw gateway stop` 또는 `openclaw gateway uninstall`로 정리한다.
 
 ### 라이브 상태 메모
 
-- OpenClaw CLI: `2026.4.21`
-- MacBook gateway: `http://127.0.0.1:18789/`, LaunchAgent running
-- OpenClaw model state: existing `openai-codex` OAuth profile + default `openai/gpt-5.4` 감지
-- Shell env: `OPENAI_API_KEY` present
-- macOS Keychain: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN` 모두 missing
+- OpenClaw CLI: `2026.5.3-1`
+- Gateway: `http://127.0.0.1:18789/`, LaunchAgent running, health OK
+- Security audit: critical 0, warn 1 (`gateway.trusted_proxies_missing`)
+- macOS Keychain: `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN` missing; `OPENAI_API_KEY`, `GITHUB_TOKEN`, `PUBLIC_DATA_API_KEY` optional missing
 - Telegram channel: not configured
 
 ### 산출물
@@ -75,23 +79,26 @@
 - Plan run: `.ai/pipeline/runs/20260504-211848_openclaw-setup-plan/`
 - Peer review: `.ai/peer-review/runs/20260504-212047-claude-review-70577.md`
 - Director review: `reviews/2026-05-04_openclaw-setup-director.md`
+- Runtime setup doc: `docs/openclaw-setup.md`
+- Secrets check: `core/secrets/check.ts`
+- Type declaration: `skills/zen-lunar-birthday/lunar-javascript.d.ts`
 
 ---
 
-## Day 2 — 다음 단계 (Mac mini 이관 + 사용자 액션)
+## Day 2 — 다음 단계 (사용자 액션)
 
-### 사용자 액션 필요 (4가지)
+### 사용자 액션 필요
 
 | # | 액션 | 소요 |
 |---|------|------|
-| 1 | Mac mini에서 AIZen repo pull 후 OpenClaw local gateway 재설정 | 10분 |
-| 2 | Telegram 봇 토큰 발급 (@BotFather) → Mac mini Keychain에 `TELEGRAM_BOT_TOKEN` 저장 | 5분 |
-| 3 | Anthropic/OpenAI API key를 Mac mini Keychain 또는 OpenClaw interactive setup으로 등록 | 5분 |
+| 1 | `ANTHROPIC_API_KEY`를 macOS Keychain에 저장 | 5분 |
+| 2 | Telegram 봇 토큰 발급 (@BotFather) → `TELEGRAM_BOT_TOKEN` Keychain 저장 | 5분 |
+| 3 | 필요 시 `OPENAI_API_KEY`, `GITHUB_TOKEN`, `PUBLIC_DATA_API_KEY` 저장 | 5분 |
 | 4 | 부모님 음력 생일 입력 → `data/profiles/family.json` (샘플은 `docs/sample-family.json`) | 2분 |
 
-### 사용자 액션 후 즉시 진행 (Claude)
+### 사용자 액션 후 즉시 진행
 
-1. Mac mini에서 OpenClaw gateway health + security audit 확인
+1. `pnpm -s secrets:check` 재실행
 2. Telegram bot channel 연결 + hello-world
 3. zen-lunar-birthday 실 매칭 검증 (생일 받으면)
 4. OpenClaw skills CLI 최신 명령 확인 후 AIZen SKILL 등록 방식 확정
@@ -100,10 +107,9 @@
 ### W1 잔여 (사용자 액션 후 W1 마무리)
 
 - **Self-bootstrapping 레이어** (`/aizen-new` 워크플로) — Layer 3 핵심
-- **모니터링** (`core/monitoring/`) — Mac mini 데몬 watchdog + 일일 morning check
-- **백업** (`core/backup/`) — Mac mini `~/.openclaw/workspace/` 일일 백업
-- **문서 보강** `docs/openclaw-setup.md` 생성 (`CLAUDE.md` dead reference 해소)
-- **TypeScript 보강** `lunar-javascript` declaration 추가
+- **모니터링** (`core/monitoring/`) — OpenClaw daemon watchdog + 일일 morning check
+- **백업** (`core/backup/`) — `~/.openclaw/workspace/` 일일 백업
+- **문서/타입 보강** 완료분 commit/push
 
 ### W2 시작
 
@@ -130,15 +136,15 @@
 
 ## 환경 정보
 
-- **OS**: macOS (zenkim_office)
-- **Node**: v25.6.1
+- **OS**: macOS (`Zen의 Mac mini` / `Zenui-Macmini.local`)
+- **Node**: v25.2.1
 - **pnpm**: 10.33.1
 - **gh CLI**: 2.87.3
-- **OpenClaw**: 2026.4.21 (`/opt/homebrew/bin/openclaw`)
-- **Anthropic API Key**: 현재 MacBook Keychain missing ⏳
-- **OpenAI API Key**: 현재 MacBook shell env present, Keychain missing ⏳
+- **OpenClaw**: 2026.5.3-1
+- **Anthropic API Key**: Keychain missing ⏳
+- **OpenAI API Key**: optional, Keychain missing ⏳
 - **Telegram Bot Token**: 미설정 ⏳
-- **OpenClaw onboard**: MacBook 임시 local gateway 완료, Mac mini 최종 설정 필요 ⏳
+- **OpenClaw onboard**: local/loopback/token gateway running ✅
 
 ---
 
