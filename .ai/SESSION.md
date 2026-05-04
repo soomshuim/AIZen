@@ -1,7 +1,7 @@
 # AIZen Session Memory
 
 > 세션 단기 기억 (compact 후 이어갈 내용)
-> Last updated: 2026-05-04 22:12
+> Last updated: 2026-05-05 01:51
 
 ---
 
@@ -78,14 +78,38 @@
 
 - Plan run: `.ai/pipeline/runs/20260504-211848_openclaw-setup-plan/`
 - Peer review: `.ai/peer-review/runs/20260504-212047-claude-review-70577.md`
+- Stage 1 peer review: `.ai/peer-review/runs/20260505-013028-claude-review-12834.md` — PASS
 - Director review: `reviews/2026-05-04_openclaw-setup-director.md`
 - Runtime setup doc: `docs/openclaw-setup.md`
 - Secrets check: `core/secrets/check.ts`
 - Type declaration: `skills/zen-lunar-birthday/lunar-javascript.d.ts`
 
+### 커밋
+
+- `8b7276f chore: bootstrap local aizen runtime` — pushed to `origin/main`
+
 ---
 
-## Day 2 — 다음 단계 (사용자 액션)
+## Day 3 — 2026-05-05 (세션 종료 기록)
+
+### 완료된 작업
+
+| 작업 | 결과 |
+|------|------|
+| **1단계 record 전 검증** | `pnpm -s typecheck`, `pnpm -s lunar:test`, `openclaw gateway health`, `openclaw security audit`, `git diff --check` PASS |
+| **1단계 Claude review** | `.ai/peer-review/runs/20260505-013028-claude-review-12834.md` PASS |
+| **1단계 커밋/푸시** | `8b7276f chore: bootstrap local aizen runtime` pushed |
+| **2단계 시크릿 점검** | `pnpm -s secrets:check` expected FAIL: `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN` missing |
+
+### 다음 세션 재개 조건
+
+- 사용자가 `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN`을 Keychain에 저장한 뒤 `-zen`으로 재개.
+- 재개 후 즉시 `pnpm -s secrets:check`를 PASS시키고 Claude review를 실행.
+- 이후 Telegram hello-world → Claude review → `data/profiles/family.json` 준비 → Claude review → zen-lunar-birthday E2E → Claude review 순서로 진행.
+
+---
+
+## 다음 단계 (사용자 액션)
 
 ### 사용자 액션 필요
 
@@ -109,7 +133,6 @@
 - **Self-bootstrapping 레이어** (`/aizen-new` 워크플로) — Layer 3 핵심
 - **모니터링** (`core/monitoring/`) — OpenClaw daemon watchdog + 일일 morning check
 - **백업** (`core/backup/`) — `~/.openclaw/workspace/` 일일 백업
-- **문서/타입 보강** 완료분 commit/push
 
 ### W2 시작
 

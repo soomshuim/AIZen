@@ -1,5 +1,22 @@
 ---
 HANDOFF: Codex -> Zen
+Date: 2026-05-05 01:51:11 +0900
+Project: /Users/zen/Project/AIZen
+Agent: Codex
+Summary: AIZen 1단계 local runtime bootstrap 변경은 Claude review PASS 후 `8b7276f chore: bootstrap local aizen runtime`로 `origin/main`에 push 완료. 2단계 Keychain secret 점검에서 `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN`이 모두 missing이라 자동 진행을 중단하고 세션 종료 기록을 남겼다.
+Next-TODO:
+  1. `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN`을 macOS Keychain에 저장.
+  2. `-zen`으로 재개 후 `pnpm -s secrets:check` PASS 확인.
+  3. 2단계 Claude review 실행.
+  4. Telegram hello-world 연결 후 Claude review.
+  5. `data/profiles/family.json` 준비 후 Claude review.
+  6. zen-lunar-birthday 실데이터 E2E 후 Claude review.
+Commits: `8b7276f` + session record commit
+Resume-Trigger: `-zen`
+---
+
+---
+HANDOFF: Codex -> Zen
 Date: 2026-05-04 22:12:00
 Project: /Users/zen/Project/AIZen
 Agent: Codex
