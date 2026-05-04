@@ -1,4 +1,23 @@
 ---
+HANDOFF: Codex -> Zen (Mac mini 재개)
+Date: 2026-05-04 21:45:00
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Codex
+Summary: `-play`로 OpenClaw setup plan/review 산출물을 만들고, `-director`로 현재 MacBook Pro에서 local/loopback/token gateway Phase 1-2를 임시 검증했다. LaunchAgent running, RPC health ok, security audit critical 0. 단, 실제 운영 서버는 Mac mini로 결정했으므로 provider/API key/Telegram/cron 최종 설정은 Mac mini에서 이어가야 한다.
+Next-TODO:
+  1. Mac mini에서 `git pull` 후 AIZen repo 재개.
+  2. Mac mini에 OpenClaw CLI 설치/확인 후 local gateway onboard + LaunchAgent 설정.
+  3. Mac mini Keychain 또는 OpenClaw interactive setup으로 Anthropic/OpenAI API key 등록.
+  4. BotFather에서 `TELEGRAM_BOT_TOKEN` 발급 후 Mac mini Keychain 저장 및 Telegram channel 연결.
+  5. `pnpm -s typecheck` 실패 원인(`lunar-javascript` declaration 누락) 수정.
+  6. `docs/openclaw-setup.md` 생성으로 CLAUDE.md dead reference 해소.
+  7. Mac mini 운영 전환 후 현재 MacBook gateway는 `openclaw gateway stop` 또는 `openclaw gateway uninstall` 검토.
+Commits: (이번 커밋)
+Plan-Run: .ai/pipeline/runs/20260504-211848_openclaw-setup-plan
+Review-Record: reviews/2026-05-04_openclaw-setup-director.md
+---
+
+---
 HANDOFF: Claude -> Zen (다음 세션)
 Date: 2026-04-23 17:33:00
 Project: /Users/zenkim_office/Project/AIZen
