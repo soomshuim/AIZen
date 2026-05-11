@@ -68,3 +68,17 @@ Next-TODO: Commit and push the stage 1 runtime bootstrap changes, then proceed t
 Review-Result: /Users/zen/Project/AIZen/.ai/peer-review/runs/20260505-013028-claude-review-12834.md
 Commits: stage 1 commit in this changeset
 ---
+
+---
+HANDOFF: Codex -> Codex
+Date: 2026-05-11 18:42:59 +0900
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Codex auto-handoff
+Summary: Context dropped below 20% (16% remaining). Auto-handoff saved SESSION/HANDOFF state, git snapshot, and clear-required sentinel before session clear.
+Next-TODO: Resume with `cd ~/Project/AIZen && read .ai/HANDOFF.md`, then read latest `.ai/HANDOFF.md` and `/Users/zenkim_office/Project/AIZen/.ai/auto-handoff/20260511-184259_codex-context-low/resume.md`.
+Resume-Trigger: cd ~/Project/AIZen && read .ai/HANDOFF.md
+Auto-Handoff-Snapshot: /Users/zenkim_office/Project/AIZen/.ai/auto-handoff/20260511-184259_codex-context-low
+Context-Remaining: 16%
+Clear-Required: /Users/zenkim_office/.codex/auto-handoff/clear-required.json
+Commits: auto-record attempted after this entry; check git log and result.json
+---

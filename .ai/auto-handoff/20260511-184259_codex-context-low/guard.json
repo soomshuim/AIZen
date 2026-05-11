@@ -1,0 +1,25 @@
+{
+  "agent": "codex",
+  "session_file": "/Users/zenkim_office/.codex/sessions/2026/05/11/rollout-2026-05-11T16-34-42-019e15f5-adea-71c3-98dc-08430fff9118.jsonl",
+  "session_match": "mtime-fallback",
+  "session_id": "019e15f5-adea-71c3-98dc-08430fff9118",
+  "session_started_at": "2026-05-11T07:34:42.922Z",
+  "session_originator": "codex-tui",
+  "session_source": "cli",
+  "is_subagent": false,
+  "model": "gpt-5.5",
+  "effort": "xhigh",
+  "cwd": "/Users/zenkim_office/Project/AIZen",
+  "session_cwd": "/Users/zenkim_office",
+  "input_tokens": 219307,
+  "cached_tokens": 218496,
+  "window_tokens": 258400,
+  "remaining_pct": 16,
+  "commands": {
+    "codex": "",
+    "claude": ""
+  },
+  "reload_instruction": "cd ~/Project/AIZen && read .ai/HANDOFF.md",
+  "threshold": 20,
+  "below_threshold": true
+}

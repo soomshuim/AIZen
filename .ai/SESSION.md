@@ -189,3 +189,13 @@
 - v4: OpenClaw + Cowork 통합
 - **v5**: Personal Automation Platform (확장성 중심, Self-bootstrapping)
 - **v5.1**: + Setup Walkthrough (Pair Mode 가이드)
+
+### 2026-05-11 18:42:59 +0900 Auto Context Handoff
+
+- Trigger: Codex context below `20%` (`16%` remaining)
+- Project: `/Users/zenkim_office/Project/AIZen`
+- Resume trigger: `cd ~/Project/AIZen && read .ai/HANDOFF.md`
+- Snapshot: `/Users/zenkim_office/Project/AIZen/.ai/auto-handoff/20260511-184259_codex-context-low`
+- Clear sentinel: `/Users/zenkim_office/.codex/auto-handoff/clear-required.json`
+- Record mode: `commit_push`
+- Next session: run resume trigger, read latest `.ai/HANDOFF.md`, then inspect `resume.md` if needed.

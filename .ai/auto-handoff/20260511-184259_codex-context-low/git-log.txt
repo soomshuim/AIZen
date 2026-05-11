@@ -1,0 +1,5 @@
+7b3fa1a chore: session record
+8b7276f chore: bootstrap local aizen runtime
+5aebb10 chore: session record
+49b3605 fix: include core/secrets/ keychain wrapper
+3238847 feat: initial AIZen platform setup
