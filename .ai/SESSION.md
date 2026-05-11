@@ -146,7 +146,7 @@
 
 | 결정 | 선택 | 근거 |
 |------|------|------|
-| OpenClaw 통합 방식 | **글로벌 CLI 설치 + 독립 레포** (subtree X) | OpenClaw README 확인 — Gateway는 control plane, AIZen은 SKILL/설정만 |
+| OpenClaw 통합 방식 | **optional runtime adapter** (필수 경로 아님) | 현재 AIZen core/skills, Keychain 점검, Telegram hello-world, trading paper 테스트는 OpenClaw 없이 독립 실행 가능. OpenClaw gateway는 나중에 로컬 자동화 런타임/skill activation 계층으로만 재검토 |
 | 시크릿 저장 | **macOS Keychain** | 최종 운영 장비(Mac mini)에 저장. 현재 MacBook Keychain에는 Anthropic/OpenAI/Telegram 키가 없음 |
 | 1차 채널 | **Telegram** (단일) | Less is More (Design 합의) |
 | UC 우선순위 | **청약(W2) > 음력(W2-3) >> 카톡(v1.1 연기)** | RICE 적용 (Product 합의) |
@@ -163,11 +163,11 @@
 - **Node**: v25.2.1
 - **pnpm**: 10.33.1
 - **gh CLI**: 2.87.3
-- **OpenClaw**: 2026.5.3-1
+- **OpenClaw**: 2026.4.21 observed on 2026-05-11
 - **Anthropic API Key**: Keychain missing ⏳
 - **OpenAI API Key**: optional, Keychain missing ⏳
 - **Telegram Bot Token**: 미설정 ⏳
-- **OpenClaw onboard**: local/loopback/token gateway running ✅
+- **OpenClaw onboard**: local gateway exists, but `openclaw gateway health` currently needs pairing/scope approval; not blocking AIZen core work
 
 ---
 
@@ -222,3 +222,18 @@
   - `git diff --check`: PASS
   - Forbidden paths absent: `.env.example`, `src/trading`, `configs/trading`
 - Live gate: live trading, live endpoint use, and live broker candidate decision remain blocked until separate explicit user approval.
+
+### 2026-05-11 21:09 KST — Session Record: OpenClaw Optional Runtime Decision
+
+- Trigger: user asked whether OpenClaw is actually required before entering API keys.
+- Decision: treat OpenClaw as optional runtime infrastructure, not a blocker for the next AIZen steps.
+- Evidence:
+  - `pnpm -s typecheck`: PASS.
+  - `pnpm -s skill:test`: PASS (12 tests).
+  - `pnpm -s secrets:check`: expected FAIL until Keychain secrets are stored.
+  - `openclaw gateway health`: blocked by pairing/scope approval.
+- Next:
+  1. Store `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, and `TELEGRAM_BOT_TOKEN` in macOS Keychain without exposing values in chat.
+  2. Re-run `pnpm -s secrets:check`.
+  3. Continue Telegram hello-world and existing SKILL validation without requiring OpenClaw.
+  4. Revisit OpenClaw later only as a runtime/activation adapter.

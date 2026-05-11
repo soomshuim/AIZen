@@ -99,3 +99,18 @@ Play-Run: .ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation
 Verification: `pnpm -s typecheck`; `pnpm -s skill:test`; `git diff --check`; forbidden path check
 Commits: (이번 커밋)
 ---
+
+---
+HANDOFF: Codex -> Zen
+Date: 2026-05-11 21:09:00 +0900
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Codex
+Summary: Recorded the AIZen runtime decision: OpenClaw is no longer treated as required for the immediate path. AIZen core/skills, Keychain checks, Telegram hello-world, and trading paper tests can proceed independently; OpenClaw remains optional runtime/activation infrastructure for a later phase.
+Next-TODO:
+  1. Store `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, and `TELEGRAM_BOT_TOKEN` in macOS Keychain without pasting secrets into chat.
+  2. Re-run `pnpm -s secrets:check`.
+  3. Continue Telegram hello-world and SKILL validation without requiring OpenClaw gateway health.
+  4. Keep live trading blocked until separate explicit approval.
+Verification: `pnpm -s typecheck`; `pnpm -s skill:test`; `pnpm -s secrets:check` expected missing required secrets; `openclaw gateway health` currently needs pairing/scope approval.
+Commits: (이번 커밋)
+---
