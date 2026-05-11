@@ -1,0 +1,26 @@
+{
+  "chain": [
+    "orchestrator",
+    "lenny-team-owner",
+    "practical-workers"
+  ],
+  "co_owners": [
+    {
+      "effort": "xhigh",
+      "label": "AI Ops Expert",
+      "level": "director",
+      "model": "gpt-5.5",
+      "persona": "ai-ops-expert",
+      "runtime": "codex"
+    }
+  ],
+  "owner": {
+    "effort": "xhigh",
+    "label": "AI Ops Expert",
+    "level": "director",
+    "model": "gpt-5.5",
+    "persona": "ai-ops-expert",
+    "reason": "업무 방향, 분배, 통합 판단을 맡습니다.",
+    "runtime": "codex"
+  }
+}

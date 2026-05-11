@@ -1,0 +1,22 @@
+{
+  "schema": "play.pipeline.v1",
+  "created_at": "2026-05-11T17:49:22+0900",
+  "updated_at": "2026-05-11T17:54:07+0900",
+  "repo": "/Users/zenkim_office/Project/AIZen",
+  "slug": "stock-trading-plan-sequence-update",
+  "request_type": "text",
+  "request_value": "기존 run /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent 의 주식 자동매매 에이전트 계획을 보완한다. 이번 요청은 플랜 보완이 우선이며, 사용자가 별도로 구현 시작을 승인하기 전까지 실제 코드 구현은 시작하지 않는다.\n\n반영할 사용자 결정과 방향:\n- 사용자는 국내용 먼저 개발 후 해외용 추가 vs 해외용 먼저 개발 후 국내용 추가 중 어느 쪽이 나은지 물었다.\n- 결론은 '브로커 독립 공통 코어를 먼저 설계하고, 첫 실행 어댑터는 Alpaca paper로 검증한 뒤, 두 번째 어댑터로 한국투자증권 KIS 국내/해외주식을 추가'하는 순서다.\n- 토스증권은 개인 자동매매용 공개 Trading API를 확인하지 못했으므로 제외한다.\n- 미래에셋은 로보링크/FIX/API DMA 계열은 보이나 개인 개발자용 REST 자동매매 MVP에는 부적합하므로 초기 후보에서 제외한다.\n- 국내 실사용 가능성은 KIS adapter로 흡수한다.\n- AIZen 구조 제약: TypeScript, skills/zen-<name>/, core/secrets Keychain-only, core/error, core/types를 반드시 사용한다. src/trading, configs/trading, .env.example는 만들지 않는다.\n- 플랜은 공통 코어 -> Alpaca paper adapter -> KIS adapter -> live 후보 결정 순서로 재작성한다.\n- 리스크 정책은 기존 deep-research-report.md 근거처럼 고정 익절/손절보다 변동성/낙폭 예산 기반으로 둔다.\n\n산출물 요구:\n1. 국내-first vs US-first 비교와 최종 결정 근거.\n2. 수정된 구현 순서와 acceptance gates.\n3. AIZen 파일 구조 계획.\n4. 브로커 adapter 인터페이스와 Alpaca/KIS 차이를 흡수하는 설계.\n5. 구현 보류 상태와 사용자 승인 필요 조건.",
+  "run_dir": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update",
+  "team_analysis_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/01-team-analysis.md",
+  "review_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/02-review.md",
+  "plan_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/03-plan.md",
+  "plan_review_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/04-plan-review.md",
+  "implementation_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/05-implementation.md",
+  "record_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/06-record.md",
+  "review_verdict": "PASS",
+  "review_result_file": "/Users/zenkim_office/Project/AIZen/.ai/peer-review/runs/20260511-175010-claude-review-47101.md",
+  "review_exit_code": 0,
+  "plan_review_verdict": "NEEDS_USER_DECISION",
+  "plan_review_result_file": "/Users/zenkim_office/Project/AIZen/.ai/peer-review/runs/20260511-175342-claude-plan-66826.md",
+  "plan_review_exit_code": 0
+}

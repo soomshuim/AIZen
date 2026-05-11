@@ -199,3 +199,26 @@
 - Clear sentinel: `/Users/zenkim_office/.codex/auto-handoff/clear-required.json`
 - Record mode: `commit_push`
 - Next session: run resume trigger, read latest `.ai/HANDOFF.md`, then inspect `resume.md` if needed.
+
+### 2026-05-11 19:35 KST — Stock Trading Paper Foundation
+
+- Trigger: continued the approved `-play 구현 시작` run for the stock-trading agent.
+- Completed:
+  - Implemented broker-independent trading domain contracts in `core/types.ts`.
+  - Added broker-oriented `CoreError` taxonomy and live-trading approval guard in `core/error/index.ts`.
+  - Added Keychain-only broker secret names for Alpaca paper and KIS in `core/secrets/*`.
+  - Added `skills/zen-trading-core/` with broker registry dispatch, deterministic volatility/drawdown risk defaults, sanitized `.aizen-cache/trading` state persistence, and audit-event allow-listing.
+  - Added `skills/zen-trading-broker-alpaca/` as a paper-only adapter with pinned paper/data origins.
+  - Added `skills/zen-trading-broker-kis/` as a KR/US contract stub with live/network calls blocked.
+  - Added `docs/trading/` runbook, risk policy, KIS expansion plan, and checklist.
+- Play run: `.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation`
+- Peer reviews:
+  - Worker-04 initially returned NO-GO on state persistence leakage risk.
+  - Controller repaired state/audit persistence and removed `raw`/`accountId` exposure surfaces.
+  - Final Claude peer gate PASS: `.ai/peer-review/runs/20260511-193011-claude-review-23486.md`
+- Verification:
+  - `pnpm -s typecheck`: PASS
+  - `pnpm -s skill:test`: PASS (12 tests)
+  - `git diff --check`: PASS
+  - Forbidden paths absent: `.env.example`, `src/trading`, `configs/trading`
+- Live gate: live trading, live endpoint use, and live broker candidate decision remain blocked until separate explicit user approval.

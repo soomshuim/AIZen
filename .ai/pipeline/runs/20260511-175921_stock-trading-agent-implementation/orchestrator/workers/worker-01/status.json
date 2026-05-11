@@ -1,0 +1,12 @@
+{
+  "worker_id": "worker-01",
+  "role": "intern",
+  "persona": "researcher",
+  "execution_profile": "intern",
+  "difficulty": "low",
+  "risk": "medium",
+  "status": "done",
+  "updated_at": "2026-05-11T18:40:15+0900",
+  "output_file": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/orchestrator/workers/worker-01/output.md",
+  "changed_files_file": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/orchestrator/workers/worker-01/changed-files.txt"
+}

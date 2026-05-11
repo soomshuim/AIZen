@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.soomshuim.agent-center.goal-orchestrator.20260511-174922-stock-trading-plan-sequence-update</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/zenkim_office/Project/agent-center/scripts/goal-orchestrator.sh</string>
+    <string>run</string>
+    <string>--daemon-worker</string>
+    <string>--repo</string>
+    <string>/Users/zenkim_office/Project/AIZen</string>
+    <string>--run</string>
+    <string>/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update</string>
+    <string>--runtime</string>
+    <string>auto</string>
+    <string>--target</string>
+    <string>claude</string>
+    <string>--timeout-seconds</string>
+    <string>2700</string>
+    <string>--max-repair-rounds</string>
+    <string>1</string>
+    <string>--fresh-runtime</string>
+    <string>auto</string>
+    <string>--desktop-controller</string>
+    <string>codex</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/zenkim_office/Project/AIZen</string>
+  <key>StandardOutPath</key><string>/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/goal-daemon.log</string>
+  <key>StandardErrorPath</key><string>/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/goal-daemon.err.log</string>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><false/>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key><string>/Users/zenkim_office</string>
+    <key>USER</key><string>zenkim_office</string>
+    <key>SHELL</key><string>/bin/zsh</string>
+    <key>PATH</key><string>/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Users/zenkim_office/.codex/tmp/arg0/codex-arg0VHQV5R:/opt/homebrew/lib/node_modules/@openai/codex/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/path:/Users/zenkim_office/.local/bin:/Applications/Ghostty.app/Contents/MacOS</string>
+    <key>GOAL_ORCHESTRATOR_LAUNCHD_DOMAIN</key><string>gui/501</string>
+    <key>DAEMON_COMMAND_STRING</key><string>bash /Users/zenkim_office/Project/agent-center/scripts/goal-orchestrator.sh run --daemon-worker --repo /Users/zenkim_office/Project/AIZen --run /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update --runtime auto --target claude --timeout-seconds 2700 --max-repair-rounds 1 --fresh-runtime auto --desktop-controller codex</string>
+    <key>GOAL_ORCHESTRATOR_LAUNCHD_LABEL</key><string>com.soomshuim.agent-center.goal-orchestrator.20260511-174922-stock-trading-plan-sequence-update</string>
+  </dict>
+</dict>
+</plist>

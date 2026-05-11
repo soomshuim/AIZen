@@ -1,0 +1,162 @@
+{
+  "schema": "play.goal_orchestrator.task_dag.v1",
+  "created_at": "2026-05-11T17:08:10+0900",
+  "updated_at": "2026-05-11T17:21:47+0900",
+  "repo": "/Users/zenkim_office/Project/AIZen",
+  "run_dir": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent",
+  "request": "https://claude.ai/public/artifacts/d1889d10-d683-42d1-a9ae-68ed1c3d48a3\n\n/Users/zenkim_office/Downloads/deep-research-report.md\n\n이 자료를 기반으로 주직 매매 자동화 에이전트를 구축하고 싶어. 내용이 부족하다면 추가 리서치부터 플래닝-구현까지 진행해줘. 계좌 정보 등 내게 요청할 내용이 있다면 요청해줘.  -play",
+  "current_stage": "plan-review",
+  "status": "blocked",
+  "stages": [
+    {
+      "id": "analysis",
+      "label": "Team analysis",
+      "status": "done",
+      "depends_on": [],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/01-team-analysis.md",
+      "fresh_context": true,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null,
+      "updated_at": "2026-05-11T17:09:20+0900",
+      "detail": null,
+      "runner_pid": null
+    },
+    {
+      "id": "review",
+      "label": "Analysis peer review",
+      "status": "done",
+      "depends_on": [
+        "analysis"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/02-review.md",
+      "fresh_context": false,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null,
+      "updated_at": "2026-05-11T17:11:30+0900",
+      "detail": null,
+      "runner_pid": null
+    },
+    {
+      "id": "plan",
+      "label": "Implementation plan",
+      "status": "done",
+      "depends_on": [
+        "review"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/03-plan.md",
+      "fresh_context": true,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null,
+      "updated_at": "2026-05-11T17:12:20+0900",
+      "detail": null,
+      "runner_pid": null
+    },
+    {
+      "id": "plan-review",
+      "label": "Plan peer review",
+      "status": "needs_user_decision",
+      "depends_on": [
+        "plan"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/04-plan-review.md",
+      "fresh_context": false,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null,
+      "updated_at": "2026-05-11T17:21:47+0900",
+      "detail": "exit=2",
+      "runner_pid": null
+    },
+    {
+      "id": "allocation",
+      "label": "Persona/model allocation",
+      "status": "pending",
+      "depends_on": [
+        "plan-review"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/orchestrator/allocation.json",
+      "fresh_context": false,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null
+    },
+    {
+      "id": "assignment-review",
+      "label": "Assignment peer review",
+      "status": "pending",
+      "depends_on": [
+        "allocation"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/orchestrator/assignment-review-result.md",
+      "fresh_context": false,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null
+    },
+    {
+      "id": "dispatch",
+      "label": "Worker dispatch",
+      "status": "pending",
+      "depends_on": [
+        "assignment-review"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/orchestrator/workers",
+      "fresh_context": true,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null
+    },
+    {
+      "id": "integrate",
+      "label": "Integration and implementation peer gate",
+      "status": "pending",
+      "depends_on": [
+        "dispatch"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/orchestrator/implementation-review-result.md",
+      "fresh_context": true,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null
+    },
+    {
+      "id": "record",
+      "label": "Record summary",
+      "status": "pending",
+      "depends_on": [
+        "integrate"
+      ],
+      "artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/06-record.md",
+      "fresh_context": false,
+      "executor": "headless",
+      "preferred_actuator": null,
+      "fallback_actuator": null,
+      "requires_user_approval": false,
+      "approval_reason": null
+    }
+  ],
+  "orchestrator": {
+    "mode": "daemon",
+    "pid": 61447,
+    "updated_at": "2026-05-11T17:08:10+0900"
+  }
+}

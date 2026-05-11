@@ -1,0 +1,159 @@
+# Peer Agent Review
+
+| Field | Value |
+|---|---|
+| Target | claude |
+| Mode | review |
+| Project | AIZen |
+| Repo | /Users/zenkim_office/Project/AIZen |
+| Git repo | yes |
+| Branch | main |
+| Created | 2026-05-11 17:11:30 KST |
+| Exit code | 0 |
+| Timeout seconds | 2700 |
+| Attempts | 1 |
+
+## Request
+
+Play run: /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent
+Review the team analysis artifact for this play harness run.
+Source artifact: /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/01-team-analysis.md
+
+## Artifact Content
+
+# Team Analysis
+
+## Problem
+사용자는 제공 자료(공개 아티팩트 + 딥리서치 보고서)를 기반으로 **주식 매매 자동화 에이전트**를 구축하려고 하며, 부족한 내용은 추가 리서치부터 플래닝·구현까지 이어지는 실행 가능한 로드맵이 필요하다. 핵심 과제는 모델 성능 자체보다 **실거래 제약(비용/슬리피지/리스크/승인/감사)** 하에서 재현 가능한 운영 체계를 만드는 것이다.
+
+## Current State
+- 세션 시작 점검 결과:
+  - Claude activity check 실행 완료 (2026-05-11 17:08:24 KST).
+  - auto-handoff pending-clear: `action=none`.
+  - context guard: `remaining_pct=80`, `below_threshold=false`.
+- 저장소 상태:
+  - 현재 run 디렉터리(`/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/`)와 stage 파일들이 이미 생성되어 있음.
+- 입력 자료 상태:
+  - 로컬 파일 `/Users/zenkim_office/Downloads/deep-research-report.md`는 확인됨.
+  - `https://claude.ai/public/artifacts/d1889d10-d683-42d1-a9ae-68ed1c3d48a3`는 본 세션에서 본문 확인이 불가하여, 현재 분석은 로컬 딥리서치 보고서를 중심으로 작성함.
+
+## Options
+1. **안전 우선 MVP (권장)**
+- 한국 ETF/대형주, EOD(일봉), 롱온리, 저회전 전략부터 시작.
+- 규칙 기반 리스크 예산(종목/포트폴리오 손실한도, 노출한도, 킬스위치) 우선 구현.
+- 백테스트 → 페이퍼트레이딩 → 소액 실거래 순차 전환.
+
+2. **ML/DL 중심 예측형**
+- LightGBM/XGBoost/LSTM류로 신호를 만들고 포트폴리오 규칙에 연결.
+- 구현 난이도는 낮지만 라이브 내구성/레짐 변화 대응이 취약할 수 있음.
+
+3. **Agentic/멀티소스 고도화형**
+- 가격 + 뉴스 + 공시 + 재무를 결합하고 멀티에이전트로 확장.
+- 잠재 성과는 높지만 데이터/검증/보안/운영 비용이 크게 증가.
+
+## Recommendation
+**Option 1로 시작해 Option 3으로 단계 확장**을 권장한다.
+이유:
+- 제공된 리서치의 공통 결론은 “알파의 핵심은 모델 복잡도보다 운영 규율”이다.
+- 초기부터 고빈도·복잡 모델로 가면 비용/슬리피지/과최적화 리스크가 급증한다.
+- 계좌 손실을 제한하는 안전장치(리스크 게이트, 주문 게이트, 감사로그)를 먼저 고정해야 이후 모델 고도화의 의미가 생긴다.
+
+## Scope
+- In scope:
+  - 요구사항 명세(시장/자산군/빈도/리스크 한도/성공 지표).
+  - 데이터 파이프라인(시세/기초 펀더멘털/뉴스 메타데이터).
+  - 백테스트 엔진 + 비용/슬리피지 모델.
+  - 실행 엔진(주문 라우팅, 재시도, 실패 처리).
+  - 리스크/승인/모니터링/알림/감사로그.
+  - paper trading 및 소액 라이브 런북.
+- Out of scope (초기):
+  - 초단타/고빈도 전략.
+  - 다중 브로커 동시 실거래.
+  - 레버리지/공매도 기반 복합 전략.
+
+## Risks
+- 데이터 누수(look-ahead), 레짐 과적합, 백테스트-라이브 괴리.
+- 비용/슬리피지 과소추정으로 인한 성과 붕괴.
+- 주문 실패/중복 주문/부분체결 처리 미흡.
+- 계정 권한·키 관리·승인 플로우 미정으로 인한 운영/보안 사고.
+- 규제/세무/약관 위반 가능성(브로커 API 정책 포함).
+
+## Gates
+1. **요구사항 게이트**
+- 거래 시장(국내/미국), 자산군(ETF/개별주), 빈도(EOD/분봉) 확정.
+- 성과 기준: CAGR, Sharpe, MDD, turnover, 승률 중 우선순위 정의.
+
+2. **계좌/브로커 게이트 (사용자 입력 필요)**
+- 사용할 증권사/API, 계정 유형(실계좌/모의), 주문 가능 상품.
+- API 키 발급 상태, IP 화이트리스트/2FA/권한 범위.
+- 일/주/월 손실 한도, 1회 주문 한도, 종목당 최대 비중.
+
+3. **기술 게이트**
+- 백테스트에서 비용 반영 후 최소 기준 충족:
+  - MDD 상한, Sharpe 하한, 거래비용 내구성, 워크포워드 일관성.
+- paper trading 연속 안정 기간 충족(예: 2~4주 무중단).
+
+4. **운영 게이트**
+- 킬스위치/승인 플로우/알림 채널/감사로그 검증 완료.
+- 장애 대응 런북(데이터 지연, 주문 거부, API 장애) 테스트 통과.
+
+5. **배포 게이트**
+- 소액 라이브 시작 후 단계적 증액(고정된 위험 한도 내).
+- 게이트 미충족 시 자동 롤백(전략 비활성 + 현금화/동결 규칙 적용).
+
+## Context
+
+### Git Status
+
+```
+?? .ai/codex-hyphen-trigger-guard.json
+?? .ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/
+```
+
+### Diff Stat
+
+```
+(no unstaged diff stat)
+```
+
+## Peer Result
+
+I've now thoroughly reviewed the artifact against the source research report and project context. Here is my peer review.
+
+---
+
+### Peer Review Verdict
+- **Result: PASS**
+- **Confidence: high**
+
+### Findings
+
+| Severity | File/Area | Issue | Recommendation |
+|---|---|---|---|
+| Info | `01-team-analysis.md` L7-15 | **Current State에 세션 내부 메타데이터 포함** — context guard %, handoff status 등은 팀 분석 의사결정에 무관한 noise. 이 아티팩트는 run 외부에서도 독립적으로 읽힐 수 있어야 한다. | 다음 stage(plan)에서는 operational metadata를 제거하고 저장소/입력자료 상태만 남기는 것을 권장. blocking은 아님. |
+| Info | `01-team-analysis.md` | **공개 아티팩트 URL 미확인 명시** — `claude.ai/public/artifacts/...`를 본 세션에서 확인 불가했다고 투명하게 기재함. run.json의 request에는 이 URL이 첫 번째 소스로 명시됨. | 분석은 로컬 딥리서치 보고서만으로 충분히 근거가 있으므로 blocking 아님. 다만 plan 단계에서 해당 아티팩트 접근 시도를 재확인하거나, 사용자에게 내용 요약을 요청하는 것이 좋다. |
+| Info | `01-team-analysis.md` | **AIZen SKILL 아키텍처 미언급** — 프로젝트는 `skills/zen-<name>/` 기반의 SKILL 확장 체계를 사용하지만, 분석에서 트레이딩 에이전트가 이 구조에 어떻게 매핑되는지 언급이 없다. | plan 단계에서 `skills/zen-trading/` 또는 복수 SKILL 분리(data pipeline SKILL, signal SKILL, execution SKILL 등) 전략을 명시해야 한다. 팀 분석 단계에서는 scope/recommendation 수준으로 충분하므로 blocking 아님. |
+| Info | `01-team-analysis.md` | **사용자 질문 명시적 섹션 부재** — 사용자가 "계좌 정보 등 내게 요청할 내용이 있다면 요청해줘"라고 했고, Gate 2에서 필요 정보가 식별되어 있으나 명시적인 "사용자에게 물을 질문" 목록은 없다. | Gate 2의 내용이 실질적으로 이 역할을 하고 있으므로 blocking 아님. plan 단계에서 user input 게이트 항목을 구체적 질문으로 전환하면 된다. |
+
+### Test And Acceptance Notes
+
+- **딥리서치 보고서 대조 검증**: 분석의 핵심 주장들을 소스 보고서(`deep-research-report.md`)와 대조 확인함.
+  - "운영 규율 > 모델 복잡도" → 보고서 Executive Summary L5에서 직접 확인 ✅
+  - "ETF/대형주 EOD 롱온리 MVP" → 보고서 L137, L165에서 직접 확인 ✅
+  - "비용/슬리피지 과소추정 리스크" → 보고서 L100, L184에서 직접 확인 ✅
+  - "human override는 승인 단계에만" → 보고서 L102, L9에서 직접 확인 ✅
+  - "Option 1→3 점진 확장" → 보고서 L137 워크플로우 권장과 일치 ✅
+- **구조 검증**: prompt가 요구한 7개 섹션(problem, current state, options, recommendation, scope, risks, gates) 모두 존재 ✅
+- **run.json 일관성**: artifact path가 run.json의 `team_analysis_artifact`와 일치 ✅
+- **task-dag.json 상태**: analysis stage `done`, review stage `running` — 정상 파이프라인 흐름 ✅
+- **미실행 테스트**: 이 단계는 분석 아티팩트이므로 코드 테스트 해당 없음. 실행 가능한 테스트는 plan/implementation 단계에서 발생.
+
+### Follow-Up For Requesting Agent
+
+1. **이 분석을 PASS로 처리하고 plan 단계로 진행**하라.
+2. Plan 단계에서 반드시 다루어야 할 4가지:
+   - (a) `claude.ai/public/artifacts/...` 내용 확인 또는 사용자에게 요약 요청
+   - (b) AIZen SKILL 아키텍처(`skills/zen-<name>/`)와의 매핑 전략 명시
+   - (c) Gate 2 항목을 사용자에게 물을 구체적 질문 목록으로 변환
+   - (d) 기술 스택 결정 (TypeScript 기반 프로젝트 vs Python quant 생태계 통합 방식)
+3. Current State 섹션의 세션 메타데이터는 plan 아티팩트에서는 제거하라.

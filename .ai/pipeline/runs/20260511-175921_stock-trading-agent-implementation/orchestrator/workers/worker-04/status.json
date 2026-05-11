@@ -1,0 +1,12 @@
+{
+  "worker_id": "worker-04",
+  "role": "lead",
+  "persona": "ai-ops-expert",
+  "execution_profile": "lead",
+  "difficulty": "high",
+  "risk": "high",
+  "status": "blocked",
+  "updated_at": "2026-05-11T19:23:01+0900",
+  "output_file": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/orchestrator/workers/worker-04/output.md",
+  "changed_files_file": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/orchestrator/workers/worker-04/changed-files.txt"
+}

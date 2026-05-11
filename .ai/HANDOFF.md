@@ -82,3 +82,20 @@ Context-Remaining: 16%
 Clear-Required: /Users/zenkim_office/.codex/auto-handoff/clear-required.json
 Commits: auto-record attempted after this entry; check git log and result.json
 ---
+
+---
+HANDOFF: Codex -> Zen
+Date: 2026-05-11 19:35:00 +0900
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Codex
+Summary: Completed the approved stock-trading paper foundation. Added broker-independent trading contracts, Alpaca paper-only adapter, KIS contract/stub, volatility/drawdown risk controls, sanitized state/audit persistence, docs, and tests. Final Claude peer gate PASS.
+Next-TODO:
+  1. Keep live trading blocked until separate explicit approval.
+  2. If ready for real paper validation, add `ALPACA_PAPER_API_KEY` and `ALPACA_PAPER_API_SECRET` to macOS Keychain.
+  3. Run an Alpaca paper account dry run only after confirming no account values are logged or persisted.
+  4. KIS remains contract/stub only until a future approved phase.
+Review-Result: .ai/peer-review/runs/20260511-193011-claude-review-23486.md
+Play-Run: .ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation
+Verification: `pnpm -s typecheck`; `pnpm -s skill:test`; `git diff --check`; forbidden path check
+Commits: (이번 커밋)
+---

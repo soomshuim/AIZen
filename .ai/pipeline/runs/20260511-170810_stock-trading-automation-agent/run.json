@@ -1,0 +1,22 @@
+{
+  "schema": "play.pipeline.v1",
+  "created_at": "2026-05-11T17:08:10+0900",
+  "updated_at": "2026-05-11T17:42:09+0900",
+  "repo": "/Users/zenkim_office/Project/AIZen",
+  "slug": "stock-trading-automation-agent",
+  "request_type": "text",
+  "request_value": "https://claude.ai/public/artifacts/d1889d10-d683-42d1-a9ae-68ed1c3d48a3\n\n/Users/zenkim_office/Downloads/deep-research-report.md\n\n이 자료를 기반으로 주직 매매 자동화 에이전트를 구축하고 싶어. 내용이 부족하다면 추가 리서치부터 플래닝-구현까지 진행해줘. 계좌 정보 등 내게 요청할 내용이 있다면 요청해줘.  -play",
+  "run_dir": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent",
+  "team_analysis_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/01-team-analysis.md",
+  "review_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/02-review.md",
+  "plan_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/03-plan.md",
+  "plan_review_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/04-plan-review.md",
+  "implementation_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/05-implementation.md",
+  "record_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/06-record.md",
+  "review_verdict": "PASS",
+  "review_result_file": "/Users/zenkim_office/Project/AIZen/.ai/peer-review/runs/20260511-170920-claude-review-62414.md",
+  "review_exit_code": 0,
+  "plan_review_verdict": "NEEDS_USER_DECISION",
+  "plan_review_result_file": "/Users/zenkim_office/Project/AIZen/.ai/peer-review/runs/20260511-173805-claude-plan-24408.md",
+  "plan_review_exit_code": 0
+}

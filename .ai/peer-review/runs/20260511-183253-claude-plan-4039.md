@@ -1,0 +1,836 @@
+# Peer Agent Review
+
+| Field | Value |
+|---|---|
+| Target | claude |
+| Mode | plan |
+| Project | AIZen |
+| Repo | /Users/zenkim_office/Project/AIZen |
+| Git repo | yes |
+| Branch | main |
+| Created | 2026-05-11 18:36:56 KST |
+| Exit code | 0 |
+| Timeout seconds | 2700 |
+| Attempts | 1 |
+
+## Request
+
+# Assignment Review
+
+Review this corrected persona/model orchestration allocation before execution.
+
+## Allocation
+
+```json
+{
+  "schema": "team_model_orchestrator.allocation.v3",
+  "created_at": "2026-05-11T18:28:36+0900",
+  "updated_at": "2026-05-11T18:32:43+0900",
+  "repo": "/Users/zenkim_office/Project/AIZen",
+  "play_run": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation",
+  "request": "사용자가 '-play 구현 시작'으로 구현을 승인했다.\n\n구현 기준 플랜:\n- Plan 보완 run: /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update\n- Plan artifact: /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/03-plan.md\n\n반드시 반영할 순서:\n1. Broker-independent core 설계/구현\n2. Alpaca paper adapter로 1차 검증\n3. KIS 국내/해외 adapter는 2차 확장 계획/스텁/계약까지 반영하되, 실계좌/API secret 없이 live 연결 금지\n4. live 후보 결정은 별도 사용자 승인 전 금지\n\nAIZen 제약:\n- TypeScript 기반\n- 기존 패턴: skills/zen-<name>/handler.ts, core/secrets Keychain-only, core/error, core/types 재사용\n- src/trading, configs/trading, .env.example 생성 금지\n- 비밀값/계좌값/토큰은 파일·로그·응답에 쓰지 않음\n\n구현 범위:\n- 실제 code implementation 시작\n- 공통 broker contract, domain types, risk policy, Alpaca paper adapter skeleton/implementation, KIS adapter contract/stub, tests, docs/runbook/checklist를 repo 구조에 맞게 추가\n- 가능한 테스트 실행 및 결과 기록\n- 실거래 주문/live endpoint 사용 금지\n\n사용자 결정:\n- 공통 코어 -> Alpaca paper -> KIS -> live 후보 순서 확정\n- 리스크 정책은 고정 익절/손절보다 변동성/낙폭 예산 기반\n- Telegram 알림 경로는 후속 운영 채널로 반영",
+  "plan_file": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/03-plan.md",
+  "plan_fingerprint": {
+    "sha256": "3d8c9ac64694e03fdb809fdd2b6acf257b48be652e52f362e35dc3b431e1b814"
+  },
+  "allocation_basis": "plan_aware",
+  "requested_tier": "auto",
+  "resolved_tier": "tier3",
+  "risk": "aggressive",
+  "persona_policy": "auto",
+  "routing_policy": "difficulty_risk",
+  "primary_persona": "ai-ops-expert",
+  "cds_figma_component_gate": {
+    "enabled": false,
+    "rules": [
+      "image-backed or screenshot-backed CDS components are not publishable completion",
+      "completion requires structuralFidelity.status=pass",
+      "ContractException documents quarantine/remediation only and cannot convert structure to PASS"
+    ]
+  },
+  "review_target": "claude",
+  "timeout_seconds": 2700,
+  "tier_profile": {
+    "label": "Decomposition + Lead Integration",
+    "description": "Cross-project policy, architecture, risky automation, or broad orchestration work.",
+    "worker_shape": "evidence worker, primary persona maker, senior integration, and lead release judgment",
+    "review_shape": "assignment review, per-stage peer gates, and integration review",
+    "workers": [
+      {
+        "id": "worker-01",
+        "persona_strategy": "evidence",
+        "execution_profile": "intern",
+        "difficulty": "low",
+        "risk": "medium",
+        "responsibility": "Gather bounded evidence and list affected files without editing."
+      },
+      {
+        "id": "worker-02",
+        "persona_strategy": "primary",
+        "execution_profile": "junior",
+        "difficulty": "medium",
+        "risk": "high",
+        "responsibility": "Implement the assigned slice inside a disjoint write scope."
+      },
+      {
+        "id": "worker-03",
+        "persona_strategy": "integration",
+        "execution_profile": "senior",
+        "difficulty": "high",
+        "risk": "high",
+        "responsibility": "Integrate worker output, repair defects, and verify behavior."
+      },
+      {
+        "id": "worker-04",
+        "persona_strategy": "release",
+        "execution_profile": "lead",
+        "difficulty": "high",
+        "risk": "high",
+        "responsibility": "Check architecture, process fit, and release readiness."
+      }
+    ]
+  },
+  "risk_policy": {
+    "description": "Bias ambiguous work upward and proceed with defaults while preserving peer gates.",
+    "auto_tier_bias": 1,
+    "allow_default_decisions": true
+  },
+  "routing_policy_profile": {
+    "basis": "difficulty+risk",
+    "description": "Assign functional persona for judgment first, then assign execution_profile/model/effort by task difficulty, blast radius, integration risk, and review need.",
+    "token_optimization": "Prefer the lowest execution profile that can safely satisfy the task; reserve senior/lead profiles for integration, repair, architecture, policy, and release judgment."
+  },
+  "workers": [
+    {
+      "id": "worker-01",
+      "execution_profile": "intern",
+      "difficulty": "low",
+      "risk": "medium",
+      "responsibility": "Gather bounded broker/API and project-structure evidence without editing; output is consumed by worker-03 during serial integration, not by parallel worker-02.",
+      "persona": "researcher",
+      "role": "intern",
+      "write_scope": [],
+      "external_candidates": [
+        {
+          "id": "hesreallyhim-awesome-claude-code",
+          "status": "candidate",
+          "repo": "https://github.com/hesreallyhim/awesome-claude-code",
+          "stars_checked": "42900+",
+          "checked_at": "2026-05-08",
+          "license": "see-repo",
+          "fit": "high-signal discovery index for Claude Code resources",
+          "risk": "README organization is in flux; use as map, not operational source"
+        },
+        {
+          "id": "rohitg00-skillkit",
+          "status": "candidate",
+          "repo": "https://github.com/rohitg00/skillkit",
+          "stars_checked": "not-checked",
+          "checked_at": "2026-05-08",
+          "license": "unknown",
+          "fit": "portable skill source map across Claude Code, Codex, Cursor, and others",
+          "risk": "translation layer must preserve original licenses and creator attribution"
+        }
+      ],
+      "open_skill_playbook": {
+        "status": "local_fallback",
+        "checked_at": "2026-05-10",
+        "source_ids": [],
+        "reference_source_ids": [
+          "agent-skills-open-standard"
+        ],
+        "activation": "Use when the worker owns bounded evidence gathering, source quality, prior-art scanning, or uncertainty reporting.",
+        "rules": [
+          "Prefer primary sources and local repo evidence.",
+          "Separate verified fact, inference, and unresolved uncertainty.",
+          "Keep discovery bounded to the assigned question and output reusable citations."
+        ],
+        "do_not": [
+          "Do not turn discovery into implementation unless explicitly assigned.",
+          "Do not cite a collection index as proof for the underlying tool without checking the source."
+        ]
+      },
+      "open_skill_sources": [
+        {
+          "url": "https://agentskills.io/what-are-skills",
+          "status": "verified",
+          "checked_at": "2026-05-10",
+          "license": "website",
+          "license_policy": "website",
+          "use_policy": "metadata_only",
+          "fit": "Agent Skill structure and progressive-disclosure source format.",
+          "id": "agent-skills-open-standard",
+          "active": false
+        }
+      ],
+      "open_skill_source_ids": [
+        "agent-skills-open-standard"
+      ],
+      "seniority": "intern",
+      "functional_role": "Researcher Worker",
+      "runtime": "codex",
+      "model": "gpt-5.4-mini",
+      "effort": "low",
+      "execution_group": "parallel-1",
+      "depends_on": []
+    },
+    {
+      "id": "worker-02",
+      "execution_profile": "senior",
+      "difficulty": "medium",
+      "risk": "high",
+      "responsibility": "Implement G0/G1/G2 in the reviewed AIZen paths only: core contracts, Keychain secret keys, trading skills, tests, and docs. Forbidden paths remain out of scope.",
+      "persona": "ai-ops-expert",
+      "role": "senior",
+      "write_scope": [
+        "core/types.ts",
+        "core/error/index.ts",
+        "core/secrets/keychain.ts",
+        "core/secrets/check.ts",
+        "skills/zen-trading-core/",
+        "skills/zen-trading-core/SKILL.md",
+        "skills/zen-trading-core/handler.ts",
+        "skills/zen-trading-core/tests/",
+        "skills/zen-trading-broker-alpaca/",
+        "skills/zen-trading-broker-alpaca/SKILL.md",
+        "skills/zen-trading-broker-alpaca/handler.ts",
+        "skills/zen-trading-broker-alpaca/tests/",
+        "skills/zen-trading-broker-kis/",
+        "skills/zen-trading-broker-kis/SKILL.md",
+        "skills/zen-trading-broker-kis/handler.ts",
+        "skills/zen-trading-broker-kis/tests/",
+        "docs/trading/",
+        "docs/trading/runbook-paper.md",
+        "docs/trading/risk-policy.md",
+        "docs/trading/broker-expansion-kis.md",
+        "docs/trading/checklist.md"
+      ],
+      "external_candidates": [
+        {
+          "id": "wshobson-agents-orchestration",
+          "status": "candidate",
+          "repo": "https://github.com/wshobson/agents",
+          "stars_checked": "34250+",
+          "checked_at": "2026-05-08",
+          "license": "MIT",
+          "fit": "orchestration, agent workflow, plugin architecture, progressive-disclosure skills",
+          "risk": "large plugin surface; adapt selectively, do not install wholesale"
+        },
+        {
+          "id": "rohitg00-pro-workflow",
+          "status": "candidate",
+          "repo": "https://github.com/rohitg00/awesome-claude-code-toolkit",
+          "stars_checked": "1800+ for referenced pro-workflow entry",
+          "checked_at": "2026-05-08",
+          "license": "unknown-from-index",
+          "fit": "workflow rituals, worktrees, wrap-up, hooks",
+          "risk": "index entry only; verify upstream license and source before adaptation"
+        }
+      ],
+      "open_skill_playbook": {
+        "status": "adapted",
+        "checked_at": "2026-05-10",
+        "source_ids": [
+          "wshobson-agents-orchestration"
+        ],
+        "reference_source_ids": [
+          "agent-skills-open-standard",
+          "nexus-agent-observability"
+        ],
+        "activation": "Use when the worker owns agent workflows, commands, context, handoff, memory, or orchestration artifacts.",
+        "rules": [
+          "Design the durable artifact contract before changing runtime behavior.",
+          "Separate public triggers from internal routing metadata.",
+          "Preserve resume, handoff, and audit trails when adding automation.",
+          "Define observability events for handoffs, tool calls, costs, retries, and multi-agent coordination before adding hidden automation.",
+          "For design-system automation, represent recovery, quarantine, remediationRequired, and PASS as separate states; exceptions must not silently promote blocked work to completion."
+        ],
+        "do_not": [
+          "Do not add public role/model triggers for internal routing metadata.",
+          "Do not rely on hidden session state when a file artifact can preserve the decision.",
+          "Do not let an exception schema or reviewer note override a hard completion gate without explicit audited evidence."
+        ]
+      },
+      "open_skill_sources": [
+        {
+          "url": "https://github.com/wshobson/agents",
+          "status": "verified",
+          "checked_at": "2026-05-10",
+          "license": "MIT",
+          "license_policy": "permissive",
+          "use_policy": "adapted_principles",
+          "fit": "Agent workflow, orchestration, command, and skill architecture patterns.",
+          "id": "wshobson-agents-orchestration",
+          "active": true
+        },
+        {
+          "url": "https://agentskills.io/what-are-skills",
+          "status": "verified",
+          "checked_at": "2026-05-10",
+          "license": "website",
+          "license_policy": "website",
+          "use_policy": "metadata_only",
+          "fit": "Agent Skill structure and progressive-disclosure source format.",
+          "id": "agent-skills-open-standard",
+          "active": false
+        },
+        {
+          "url": "https://github.com/nexus-labs-automation/agent-observability",
+          "status": "candidate",
+          "checked_at": "2026-05-10",
+          "license": "MIT",
+          "license_policy": "permissive",
+          "use_policy": "metadata_only",
+          "fit": "Agent observability source for tracing, tool-call tracking, token/cost tracking, multi-agent coordination, guardrails, and production evals; kept inactive until public maintenance/activity improves.",
+          "id": "nexus-agent-observability",
+          "active": false
+        }
+      ],
+      "open_skill_source_ids": [
+        "wshobson-agents-orchestration",
+        "agent-skills-open-standard",
+        "nexus-agent-observability"
+      ],
+      "seniority": "senior",
+      "functional_role": "AI Ops Expert Worker",
+      "runtime": "codex",
+      "model": "gpt-5.5",
+      "effort": "high",
+      "execution_group": "parallel-1",
+      "depends_on": []
+    },
+    {
+      "id": "worker-03",
+      "execution_profile": "senior",
+      "difficulty": "high",
+      "risk": "high",
+      "responsibility": "Serial integration/repair after worker-01 and worker-02. Scope intentionally matches worker-02 so integration can repair any reviewed implementation file; depends_on prevents concurrent write conflicts.",
+      "persona": "ai-ops-expert",
+      "role": "senior",
+      "write_scope": [
+        "core/types.ts",
+        "core/error/index.ts",
+        "core/secrets/keychain.ts",
+        "core/secrets/check.ts",
+        "skills/zen-trading-core/",
+        "skills/zen-trading-core/SKILL.md",
+        "skills/zen-trading-core/handler.ts",
+        "skills/zen-trading-core/tests/",
+        "skills/zen-trading-broker-alpaca/",
+        "skills/zen-trading-broker-alpaca/SKILL.md",
+        "skills/zen-trading-broker-alpaca/handler.ts",
+        "skills/zen-trading-broker-alpaca/tests/",
+        "skills/zen-trading-broker-kis/",
+        "skills/zen-trading-broker-kis/SKILL.md",
+        "skills/zen-trading-broker-kis/handler.ts",
+        "skills/zen-trading-broker-kis/tests/",
+        "docs/trading/",
+        "docs/trading/runbook-paper.md",
+        "docs/trading/risk-policy.md",
+        "docs/trading/broker-expansion-kis.md",
+        "docs/trading/checklist.md"
+      ],
+      "external_candidates": [
+        {
+          "id": "wshobson-agents-orchestration",
+          "status": "candidate",
+          "repo": "https://github.com/wshobson/agents",
+          "stars_checked": "34250+",
+          "checked_at": "2026-05-08",
+          "license": "MIT",
+          "fit": "orchestration, agent workflow, plugin architecture, progressive-disclosure skills",
+          "risk": "large plugin surface; adapt selectively, do not install wholesale"
+        },
+        {
+          "id": "rohitg00-pro-workflow",
+          "status": "candidate",
+          "repo": "https://github.com/rohitg00/awesome-claude-code-toolkit",
+          "stars_checked": "1800+ for referenced pro-workflow entry",
+          "checked_at": "2026-05-08",
+          "license": "unknown-from-index",
+          "fit": "workflow rituals, worktrees, wrap-up, hooks",
+          "risk": "index entry only; verify upstream license and source before adaptation"
+        }
+      ],
+      "open_skill_playbook": {
+        "status": "adapted",
+        "checked_at": "2026-05-10",
+        "source_ids": [
+          "wshobson-agents-orchestration"
+        ],
+        "reference_source_ids": [
+          "agent-skills-open-standard",
+          "nexus-agent-observability"
+        ],
+        "activation": "Use when the worker owns agent workflows, commands, context, handoff, memory, or orchestration artifacts.",
+        "rules": [
+          "Design the durable artifact contract before changing runtime behavior.",
+          "Separate public triggers from internal routing metadata.",
+          "Preserve resume, handoff, and audit trails when adding automation.",
+          "Define observability events for handoffs, tool calls, costs, retries, and multi-agent coordination before adding hidden automation.",
+          "For design-system automation, represent recovery, quarantine, remediationRequired, and PASS as separate states; exceptions must not silently promote blocked work to completion."
+        ],
+        "do_not": [
+          "Do not add public role/model triggers for internal routing metadata.",
+          "Do not rely on hidden session state when a file artifact can preserve the decision.",
+          "Do not let an exception schema or reviewer note override a hard completion gate without explicit audited evidence."
+        ]
+      },
+      "open_skill_sources": [
+        {
+          "url": "https://github.com/wshobson/agents",
+          "status": "verified",
+          "checked_at": "2026-05-10",
+          "license": "MIT",
+          "license_policy": "permissive",
+          "use_policy": "adapted_principles",
+          "fit": "Agent workflow, orchestration, command, and skill architecture patterns.",
+          "id": "wshobson-agents-orchestration",
+          "active": true
+        },
+        {
+          "url": "https://agentskills.io/what-are-skills",
+          "status": "verified",
+          "checked_at": "2026-05-10",
+          "license": "website",
+          "license_policy": "website",
+          "use_policy": "metadata_only",
+          "fit": "Agent Skill structure and progressive-disclosure source format.",
+          "id": "agent-skills-open-standard",
+          "active": false
+        },
+        {
+          "url": "https://github.com/nexus-labs-automation/agent-observability",
+          "status": "candidate",
+          "checked_at": "2026-05-10",
+          "license": "MIT",
+          "license_policy": "permissive",
+          "use_policy": "metadata_only",
+          "fit": "Agent observability source for tracing, tool-call tracking, token/cost tracking, multi-agent coordination, guardrails, and production evals; kept inactive until public maintenance/activity improves.",
+          "id": "nexus-agent-observability",
+          "active": false
+        }
+      ],
+      "open_skill_source_ids": [
+        "wshobson-agents-orchestration",
+        "agent-skills-open-standard",
+        "nexus-agent-observability"
+      ],
+      "seniority": "senior",
+      "functional_role": "AI Ops Expert Worker",
+      "runtime": "codex",
+      "model": "gpt-5.5",
+      "effort": "high",
+      "execution_group": "serial-integration",
+      "depends_on": [
+        "worker-01",
+        "worker-02"
+      ]
+    },
+    {
+      "id": "worker-04",
+      "execution_profile": "lead",
+      "difficulty": "high",
+      "risk": "high",
+      "responsibility": "Check architecture, process fit, and release readiness.",
+      "persona": "ai-ops-expert",
+      "role": "lead",
+      "write_scope": [],
+      "external_candidates": [
+        {
+          "id": "wshobson-agents-orchestration",
+          "status": "candidate",
+          "repo": "https://github.com/wshobson/agents",
+          "stars_checked": "34250+",
+          "checked_at": "2026-05-08",
+          "license": "MIT",
+          "fit": "orchestration, agent workflow, plugin architecture, progressive-disclosure skills",
+          "risk": "large plugin surface; adapt selectively, do not install wholesale"
+        },
+        {
+          "id": "rohitg00-pro-workflow",
+          "status": "candidate",
+          "repo": "https://github.com/rohitg00/awesome-claude-code-toolkit",
+          "stars_checked": "1800+ for referenced pro-workflow entry",
+          "checked_at": "2026-05-08",
+          "license": "unknown-from-index",
+          "fit": "workflow rituals, worktrees, wrap-up, hooks",
+          "risk": "index entry only; verify upstream license and source before adaptation"
+        }
+      ],
+      "open_skill_playbook": {
+        "status": "adapted",
+        "checked_at": "2026-05-10",
+        "source_ids": [
+          "wshobson-agents-orchestration"
+        ],
+        "reference_source_ids": [
+          "agent-skills-open-standard",
+          "nexus-agent-observability"
+        ],
+        "activation": "Use when the worker owns agent workflows, commands, context, handoff, memory, or orchestration artifacts.",
+        "rules": [
+          "Design the durable artifact contract before changing runtime behavior.",
+          "Separate public triggers from internal routing metadata.",
+          "Preserve resume, handoff, and audit trails when adding automation.",
+          "Define observability events for handoffs, tool calls, costs, retries, and multi-agent coordination before adding hidden automation.",
+          "For design-system automation, represent recovery, quarantine, remediationRequired, and PASS as separate states; exceptions must not silently promote blocked work to completion."
+        ],
+        "do_not": [
+          "Do not add public role/model triggers for internal routing metadata.",
+          "Do not rely on hidden session state when a file artifact can preserve the decision.",
+          "Do not let an exception schema or reviewer note override a hard completion gate without explicit audited evidence."
+        ]
+      },
+      "open_skill_sources": [
+        {
+          "url": "https://github.com/wshobson/agents",
+          "status": "verified",
+          "checked_at": "2026-05-10",
+          "license": "MIT",
+          "license_policy": "permissive",
+          "use_policy": "adapted_principles",
+          "fit": "Agent workflow, orchestration, command, and skill architecture patterns.",
+          "id": "wshobson-agents-orchestration",
+          "active": true
+        },
+        {
+          "url": "https://agentskills.io/what-are-skills",
+          "status": "verified",
+          "checked_at": "2026-05-10",
+          "license": "website",
+          "license_policy": "website",
+          "use_policy": "metadata_only",
+          "fit": "Agent Skill structure and progressive-disclosure source format.",
+          "id": "agent-skills-open-standard",
+          "active": false
+        },
+        {
+          "url": "https://github.com/nexus-labs-automation/agent-observability",
+          "status": "candidate",
+          "checked_at": "2026-05-10",
+          "license": "MIT",
+          "license_policy": "permissive",
+          "use_policy": "metadata_only",
+          "fit": "Agent observability source for tracing, tool-call tracking, token/cost tracking, multi-agent coordination, guardrails, and production evals; kept inactive until public maintenance/activity improves.",
+          "id": "nexus-agent-observability",
+          "active": false
+        }
+      ],
+      "open_skill_source_ids": [
+        "wshobson-agents-orchestration",
+        "agent-skills-open-standard",
+        "nexus-agent-observability"
+      ],
+      "seniority": "lead",
+      "functional_role": "AI Ops Expert Worker",
+      "runtime": "codex",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "execution_group": "serial-release",
+      "depends_on": [
+        "worker-03"
+      ]
+    }
+  ],
+  "review": {
+    "verdict": null,
+    "result_file": null,
+    "exit_code": null,
+    "updated_at": null
+  },
+  "execution": {
+    "status": "pending",
+    "requested_runtime": null,
+    "exit_code": null,
+    "updated_at": null
+  },
+  "integration": {
+    "status": "pending",
+    "worker_id": null,
+    "exit_code": null,
+    "updated_at": null
+  },
+  "implementation_review": {
+    "verdict": null,
+    "result_file": null,
+    "exit_code": null,
+    "updated_at": null
+  },
+  "primary_owner": "ai-ops-expert",
+  "routing_decision": {
+    "mode": "team_dispatch",
+    "tier": "tier3",
+    "resolved_tier": "tier3",
+    "primary_owner": "ai-ops-expert",
+    "needs_assignment_review": true,
+    "reason": "오케스트레이터가 Lenny Team owner를 세우고, 동시에 할 수 있는 실무는 병렬로 시작하되 통합/최종 판단은 순서대로 진행하도록 판단했습니다.",
+    "decision_reason": "오케스트레이터가 Lenny Team owner를 세우고, 동시에 할 수 있는 실무는 병렬로 시작하되 통합/최종 판단은 순서대로 진행하도록 판단했습니다.",
+    "execution_mode": "mixed",
+    "solo_reason": null,
+    "serial_reason": null,
+    "parallel_reason": "서로 기다리지 않아도 되는 실무 worker는 같은 실행 그룹에서 동시에 시작합니다.",
+    "parallelization": {
+      "considered": true,
+      "decision": "mixed",
+      "reason": "오케스트레이터가 Lenny Team owner를 세우고, 동시에 할 수 있는 실무는 병렬로 시작하되 통합/최종 판단은 순서대로 진행하도록 판단했습니다.",
+      "worker_count": 4,
+      "execution_groups": [
+        {
+          "id": "parallel-1",
+          "mode": "parallel",
+          "reason": "증거 수집과 주 구현은 서로 기다리지 않아도 되므로 동시에 시작합니다."
+        },
+        {
+          "id": "serial-integration",
+          "mode": "serial",
+          "reason": "통합과 수정은 선행 worker 결과가 필요합니다.",
+          "depends_on": [
+            "parallel-1"
+          ]
+        },
+        {
+          "id": "serial-release",
+          "mode": "serial",
+          "reason": "최종 판단은 통합 결과 뒤에 진행합니다.",
+          "depends_on": [
+            "serial-integration"
+          ]
+        }
+      ]
+    }
+  },
+  "owner_allocation": {
+    "chain": [
+      "orchestrator",
+      "lenny-team-owner",
+      "practical-workers"
+    ],
+    "owner": {
+      "persona": "ai-ops-expert",
+      "label": "AI Ops Expert",
+      "level": "director",
+      "runtime": "codex",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "reason": "업무 방향, 분배, 통합 판단을 맡습니다."
+    },
+    "co_owners": [
+      {
+        "persona": "ai-ops-expert",
+        "label": "AI Ops Expert",
+        "level": "director",
+        "runtime": "codex",
+        "model": "gpt-5.5",
+        "effort": "xhigh"
+      }
+    ]
+  },
+  "work_breakdown": {
+    "workers": [
+      {
+        "id": "worker-01",
+        "role": "intern",
+        "persona": "researcher",
+        "functional_role": "Researcher Worker",
+        "seniority": "intern",
+        "runtime": "codex",
+        "model": "gpt-5.4-mini",
+        "effort": "low",
+        "responsibility": "Gather bounded broker/API and project-structure evidence without editing; output is consumed by worker-03 during serial integration, not by parallel worker-02.",
+        "write_scope": [],
+        "execution_group": "parallel-1",
+        "depends_on": [],
+        "open_skill_source_ids": [
+          "agent-skills-open-standard"
+        ]
+      },
+      {
+        "id": "worker-02",
+        "role": "senior",
+        "persona": "ai-ops-expert",
+        "functional_role": "AI Ops Expert Worker",
+        "seniority": "senior",
+        "runtime": "codex",
+        "model": "gpt-5.5",
+        "effort": "high",
+        "responsibility": "Implement G0/G1/G2 in the reviewed AIZen paths only: core contracts, Keychain secret keys, trading skills, tests, and docs. Forbidden paths remain out of scope.",
+        "write_scope": [
+          "core/types.ts",
+          "core/error/index.ts",
+          "core/secrets/keychain.ts",
+          "core/secrets/check.ts",
+          "skills/zen-trading-core/",
+          "skills/zen-trading-core/SKILL.md",
+          "skills/zen-trading-core/handler.ts",
+          "skills/zen-trading-core/tests/",
+          "skills/zen-trading-broker-alpaca/",
+          "skills/zen-trading-broker-alpaca/SKILL.md",
+          "skills/zen-trading-broker-alpaca/handler.ts",
+          "skills/zen-trading-broker-alpaca/tests/",
+          "skills/zen-trading-broker-kis/",
+          "skills/zen-trading-broker-kis/SKILL.md",
+          "skills/zen-trading-broker-kis/handler.ts",
+          "skills/zen-trading-broker-kis/tests/",
+          "docs/trading/",
+          "docs/trading/runbook-paper.md",
+          "docs/trading/risk-policy.md",
+          "docs/trading/broker-expansion-kis.md",
+          "docs/trading/checklist.md"
+        ],
+        "execution_group": "parallel-1",
+        "depends_on": [],
+        "open_skill_source_ids": [
+          "wshobson-agents-orchestration",
+          "agent-skills-open-standard",
+          "nexus-agent-observability"
+        ]
+      },
+      {
+        "id": "worker-03",
+        "role": "senior",
+        "persona": "ai-ops-expert",
+        "functional_role": "AI Ops Expert Worker",
+        "seniority": "senior",
+        "runtime": "codex",
+        "model": "gpt-5.5",
+        "effort": "high",
+        "responsibility": "Serial integration/repair after worker-01 and worker-02. Scope intentionally matches worker-02 so integration can repair any reviewed implementation file; depends_on prevents concurrent write conflicts.",
+        "write_scope": [
+          "core/types.ts",
+          "core/error/index.ts",
+          "core/secrets/keychain.ts",
+          "core/secrets/check.ts",
+          "skills/zen-trading-core/",
+          "skills/zen-trading-core/SKILL.md",
+          "skills/zen-trading-core/handler.ts",
+          "skills/zen-trading-core/tests/",
+          "skills/zen-trading-broker-alpaca/",
+          "skills/zen-trading-broker-alpaca/SKILL.md",
+          "skills/zen-trading-broker-alpaca/handler.ts",
+          "skills/zen-trading-broker-alpaca/tests/",
+          "skills/zen-trading-broker-kis/",
+          "skills/zen-trading-broker-kis/SKILL.md",
+          "skills/zen-trading-broker-kis/handler.ts",
+          "skills/zen-trading-broker-kis/tests/",
+          "docs/trading/",
+          "docs/trading/runbook-paper.md",
+          "docs/trading/risk-policy.md",
+          "docs/trading/broker-expansion-kis.md",
+          "docs/trading/checklist.md"
+        ],
+        "execution_group": "serial-integration",
+        "depends_on": [
+          "worker-01",
+          "worker-02"
+        ],
+        "open_skill_source_ids": [
+          "wshobson-agents-orchestration",
+          "agent-skills-open-standard",
+          "nexus-agent-observability"
+        ]
+      },
+      {
+        "id": "worker-04",
+        "role": "lead",
+        "persona": "ai-ops-expert",
+        "functional_role": "AI Ops Expert Worker",
+        "seniority": "lead",
+        "runtime": "codex",
+        "model": "gpt-5.5",
+        "effort": "xhigh",
+        "responsibility": "Check architecture, process fit, and release readiness.",
+        "write_scope": [],
+        "execution_group": "serial-release",
+        "depends_on": [
+          "worker-03"
+        ],
+        "open_skill_source_ids": [
+          "wshobson-agents-orchestration",
+          "agent-skills-open-standard",
+          "nexus-agent-observability"
+        ]
+      }
+    ],
+    "execution_groups": [
+      {
+        "id": "parallel-1",
+        "mode": "parallel",
+        "reason": "증거 수집과 주 구현은 서로 기다리지 않아도 되므로 동시에 시작합니다."
+      },
+      {
+        "id": "serial-integration",
+        "mode": "serial",
+        "reason": "통합과 수정은 선행 worker 결과가 필요합니다.",
+        "depends_on": [
+          "parallel-1"
+        ]
+      },
+      {
+        "id": "serial-release",
+        "mode": "serial",
+        "reason": "최종 판단은 통합 결과 뒤에 진행합니다.",
+        "depends_on": [
+          "serial-integration"
+        ]
+      }
+    ]
+  },
+  "fingerprints": {
+    "allocation": {
+      "sha256": "7f30bdcbcd2788abea788c5f143f3446cfced8cd05187f57c5003babb50ea46b"
+    }
+  },
+  "projection_files": {
+    "routing_decision": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/orchestrator/routing-decision.json",
+    "owner_allocation": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/orchestrator/owner-allocation.json",
+    "work_breakdown": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/orchestrator/work-breakdown.json"
+  }
+}
+
+```
+
+## Corrections Applied
+
+- Removed forbidden `src/trading` from worker write scopes.
+- Replaced bare filenames with fully-qualified AIZen paths.
+- Added `skills/zen-trading-*/tests/` scopes.
+- Documented worker-03 overlap as serial integration/repair after worker-02.
+- Documented worker-01 evidence output as input for worker-03, not parallel worker-02.
+
+## Context
+
+### Git Status
+
+```
+?? .ai/codex-hyphen-trigger-guard.json
+?? .ai/peer-review/runs/20260511-170920-claude-review-62414.md
+?? .ai/peer-review/runs/20260511-171220-claude-plan-65226.md
+?? .ai/peer-review/runs/20260511-173805-claude-plan-24408.md
+?? .ai/peer-review/runs/20260511-175010-claude-review-47101.md
+?? .ai/peer-review/runs/20260511-175342-claude-plan-66826.md
+?? .ai/peer-review/runs/20260511-180022-claude-review-72592.md
+?? .ai/peer-review/runs/20260511-180229-claude-plan-75073.md
+?? .ai/peer-review/runs/20260511-181055-claude-plan-77418.md
+?? .ai/peer-review/runs/20260511-181720-claude-plan-80358.md
+?? .ai/peer-review/runs/20260511-182837-claude-plan-3222.md
+?? .ai/pipeline/runs/20260511-170810_stock-trading-automation-agent/
+?? .ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/
+?? .ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/
+```
+
+### Diff Stat
+
+```
+(no unstaged diff stat)
+```
+
+## Peer Result
+
+### Peer Review Verdict
+- **Result: PASS**
+- **Confidence: high**
+
+All 5 prior FAIL findings (critical `src/trading` path violation, bare filenames, missing test scopes, undocumented overlap, undocumented evidence flow) are resolved in the corrected allocation. Only info-level notes remain.
+
+**Key follow-up for requesting agent**: Persist the corrected allocation to disk before dispatching workers -- the on-disk `allocation.json` still contains the original FAIL version.

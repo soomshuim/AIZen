@@ -1,0 +1,128 @@
+# Team Analysis — Stock Trading Plan Sequence Update
+
+## 1) 문제 정의
+기존 주식 자동매매 에이전트 run의 우선순위를 재정렬해야 한다. 핵심 요구는 “브로커 종속 구현”이 아니라 “브로커 독립 공통 코어”를 먼저 확정하고, 구현은 사용자 승인 전까지 보류하는 것이다.
+
+## 2) 현재 상태 요약
+- 기존 계획은 브로커/시장 우선순위가 명확히 고정되지 않아 단계별 게이트가 약했다.
+- 사용자 결정이 확정됨:
+  - 순서: 공통 코어 설계 → Alpaca paper 검증 → KIS(국내/해외) 추가 → live 후보 결정
+  - 토스증권 제외(개인 자동매매 공개 Trading API 확인 불가)
+  - 미래에셋 제외(로보링크/FIX/API DMA 계열은 개인 REST MVP 부적합)
+  - 국내 실사용 경로는 KIS adapter로 흡수
+- 구조 제약:
+  - TypeScript
+  - `skills/zen-<name>/`
+  - `core/secrets` (Keychain-only), `core/error`, `core/types` 필수 사용
+  - `src/trading`, `configs/trading`, `.env.example` 생성 금지
+- 리스크 정책:
+  - 고정 익절/손절이 아닌 변동성/낙폭 예산 기반
+
+## 3) 옵션 비교 (국내-first vs US-first)
+### 옵션 A: 국내-first (KIS 선행)
+- 장점: 초기부터 국내 실사용 문맥 반영
+- 단점: 인증/상품구분/시장별 제약이 많아 공통 인터페이스 안정화 전 복잡도 급증, 초기 검증 속도 저하
+
+### 옵션 B: US-first (Alpaca 선행)
+- 장점: paper 환경으로 실행 리스크 낮고 주문/체결 피드백 루프가 빠름, 공통 코어 검증에 유리
+- 단점: 국내 실사용 요건 반영이 2단계로 지연
+
+### 최종 결정
+**브로커 독립 공통 코어 선행 + Alpaca paper 1차 검증 + KIS 2차 확장**이 최적.
+- 이유: 구현 복잡도를 분리하면서도, 공통 계약(interfaces/types/error semantics)을 먼저 고정해 재작업 비용을 최소화한다.
+- 국내 실사용성은 KIS adapter 단계에서 확보 가능하다.
+
+## 4) 수정된 구현 순서와 Acceptance Gates
+## Phase 0 — 공통 코어 설계
+- 산출물: 브로커 추상 인터페이스, 주문/포지션/리스크 도메인 타입, 공통 에러 모델, Keychain 기반 시크릿 접근 계약
+- Gate G0:
+  - 브로커 비종속 타입/에러/시크릿 계약 문서화 완료
+  - Alpaca/KIS 모두 매핑 가능한 필드셋 검증
+  - 리스크 정책이 변동성/낙폭 예산 기반으로 타입에 반영
+
+## Phase 1 — Alpaca Paper Adapter
+- 산출물: paper 거래용 adapter, 코어-어댑터 연결 검증 시나리오
+- Gate G1:
+  - 주문 lifecycle(create/cancel/fill sync) 정상
+  - 포지션/잔고/체결 조회 일관성 확보
+  - 실패 케이스가 `core/error` 규약으로 수렴
+  - 실제 live endpoint 미사용 보장
+
+## Phase 2 — KIS Adapter (국내/해외)
+- 산출물: KIS 국내/해외주식 adapter, 시장별 차이 매핑
+- Gate G2:
+  - 국내/해외 상품코드·호가단위·거래시간 차이를 공통 인터페이스로 흡수
+  - 인증/토큰/요청서명 처리의 Keychain-only 준수
+  - Alpaca와 동일 상위 유스케이스 테스트 통과(브로커 교체 가능성 확인)
+
+## Phase 3 — Live 후보 결정
+- 산출물: 운영 후보 브로커 결정 문서(규제/안정성/운영성 기준)
+- Gate G3:
+  - paper 및 모의/테스트 결과 비교 리포트
+  - 운영 리스크(시장중단, 주문거부, 재시도 정책) 승인 기준 충족
+  - 사용자 명시 승인 확보 전 live 전환 금지
+
+## 5) AIZen 파일 구조 계획 (제약 반영)
+- `core/types/`
+  - broker contracts, order/position/risk domain types
+- `core/error/`
+  - broker-agnostic error taxonomy, mapping helpers
+- `core/secrets/`
+  - Keychain-only credential provider, broker credential keys
+- `skills/zen-trading-core/`
+  - 코어 설계/검증 스킬 및 운영 절차 문서
+- `skills/zen-trading-alpaca/`
+  - Alpaca paper 어댑터 작업 가이드/체크리스트
+- `skills/zen-trading-kis/`
+  - KIS 국내/해외 어댑터 작업 가이드/체크리스트
+- 금지 경로 준수:
+  - `src/trading` 생성하지 않음
+  - `configs/trading` 생성하지 않음
+  - `.env.example` 생성하지 않음
+
+## 6) 브로커 Adapter 인터페이스 설계 방향
+핵심은 **표준화된 상위 계약 + 브로커별 capability/normalization 레이어**다.
+
+- 공통 인터페이스(예시 범주):
+  - `authenticate()`
+  - `getAccountSnapshot()`
+  - `getQuote(symbol, market)`
+  - `placeOrder(orderIntent)`
+  - `cancelOrder(orderId)`
+  - `getOrder(orderId)`
+  - `listPositions()`
+  - `mapBrokerError(raw) -> CoreError`
+- Capability flags:
+  - fractionals, extended-hours, shorting, order-types, market-scope(US/KR)
+- Normalization 포인트:
+  - symbol namespace(US ticker vs KIS 종목코드)
+  - 시장 세션/타임존
+  - 가격 단위/호가 단위
+  - 주문 상태 전이명(브로커별 상태를 코어 상태로 정규화)
+  - 수수료/세금/체결 단위 차이
+- 리스크 엔진 연동:
+  - 고정 TP/SL 대신 volatility budget + drawdown budget 파라미터를 코어 정책으로 주입
+  - adapter는 리스크 계산을 직접 소유하지 않고 실행 가능성/제약만 보고
+
+## 7) 범위 / 비범위
+- 범위:
+  - 계획 재작성, 단계/게이트/구조/인터페이스 합의
+- 비범위:
+  - 실제 코드 구현
+  - 실계좌 연결 및 live 주문 실행
+  - 토스/미래에셋 adapter 착수
+
+## 8) 주요 리스크
+- KIS 국내/해외 주문 규격 차이로 인한 인터페이스 누수
+- 브로커별 상태코드 불일치로 재시도/멱등성 오류 가능
+- 리스크 예산 모델의 파라미터 캘리브레이션 미흡 시 과소/과대 제한
+- Keychain-only 제약 하에서 로컬/CI 실행 전략 불명확 시 개발 마찰
+
+## 9) 구현 보류 및 사용자 승인 게이트
+현재 단계는 **Plan 보완 완료 상태**이며 **구현 보류**다.
+아래 승인 조건 충족 전 실제 코드 작업을 시작하지 않는다.
+
+- 승인 조건 A: Phase/Gate 구조(G0~G3) 사용자 확정
+- 승인 조건 B: 공통 인터페이스/리스크 정책(변동성·낙폭 예산) 사용자 확정
+- 승인 조건 C: Alpaca paper 선행 및 KIS 후속 순서 최종 승인
+- 승인 조건 D: live 전환은 별도 승인 필요(자동 진행 금지)

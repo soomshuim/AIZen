@@ -21,6 +21,63 @@ export class SkillError extends Error {
   }
 }
 
+export type CoreErrorCode =
+  | "BROKER_AUTH_FAILED"
+  | "BROKER_RATE_LIMITED"
+  | "BROKER_ORDER_REJECTED"
+  | "BROKER_NOT_SUPPORTED"
+  | "BROKER_UNAVAILABLE"
+  | "RISK_BUDGET_EXCEEDED"
+  | "SECRET_MISSING"
+  | "LIVE_TRADING_APPROVAL_REQUIRED"
+  | "VALIDATION_FAILED"
+  | "UNKNOWN";
+
+export class CoreError extends Error {
+  constructor(
+    public readonly code: CoreErrorCode,
+    message: string,
+    public readonly details?: Record<string, unknown>,
+    public readonly cause?: unknown,
+  ) {
+    super(message);
+    this.name = "CoreError";
+  }
+}
+
+export function mapHttpStatusToCoreError(
+  status: number,
+  message: string,
+  details?: Record<string, unknown>,
+): CoreError {
+  if (status === 401 || status === 403) {
+    return new CoreError("BROKER_AUTH_FAILED", message, details);
+  }
+  if (status === 429) {
+    return new CoreError("BROKER_RATE_LIMITED", message, details);
+  }
+  if (status >= 500) {
+    return new CoreError("BROKER_UNAVAILABLE", message, details);
+  }
+  if (status >= 400) {
+    return new CoreError("BROKER_ORDER_REJECTED", message, details);
+  }
+  return new CoreError("UNKNOWN", message, details);
+}
+
+export function ensurePaperOrSandbox(
+  environment: string,
+  brokerName: string,
+): void {
+  if (environment === "live") {
+    throw new CoreError(
+      "LIVE_TRADING_APPROVAL_REQUIRED",
+      `${brokerName} live trading requires separate explicit user approval.`,
+      { brokerName, environment },
+    );
+  }
+}
+
 export async function withRetry<T>(
   fn: () => Promise<T>,
   opts: RetryOptions = {},

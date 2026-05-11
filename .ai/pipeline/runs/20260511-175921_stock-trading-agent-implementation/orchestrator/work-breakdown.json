@@ -1,0 +1,150 @@
+{
+  "execution_groups": [
+    {
+      "id": "parallel-1",
+      "mode": "parallel",
+      "reason": "증거 수집과 주 구현은 서로 기다리지 않아도 되므로 동시에 시작합니다."
+    },
+    {
+      "depends_on": [
+        "parallel-1"
+      ],
+      "id": "serial-integration",
+      "mode": "serial",
+      "reason": "통합과 수정은 선행 worker 결과가 필요합니다."
+    },
+    {
+      "depends_on": [
+        "serial-integration"
+      ],
+      "id": "serial-release",
+      "mode": "serial",
+      "reason": "최종 판단은 통합 결과 뒤에 진행합니다."
+    }
+  ],
+  "workers": [
+    {
+      "depends_on": [],
+      "effort": "low",
+      "execution_group": "parallel-1",
+      "functional_role": "Researcher Worker",
+      "id": "worker-01",
+      "model": "gpt-5.4-mini",
+      "open_skill_source_ids": [
+        "agent-skills-open-standard"
+      ],
+      "persona": "researcher",
+      "responsibility": "Gather bounded broker/API and project-structure evidence without editing; output is consumed by worker-03 during serial integration, not by parallel worker-02.",
+      "role": "intern",
+      "runtime": "codex",
+      "seniority": "intern",
+      "write_scope": []
+    },
+    {
+      "depends_on": [],
+      "effort": "high",
+      "execution_group": "parallel-1",
+      "functional_role": "AI Ops Expert Worker",
+      "id": "worker-02",
+      "model": "gpt-5.5",
+      "open_skill_source_ids": [
+        "wshobson-agents-orchestration",
+        "agent-skills-open-standard",
+        "nexus-agent-observability"
+      ],
+      "persona": "ai-ops-expert",
+      "responsibility": "Implement G0/G1/G2 in the reviewed AIZen paths only: core contracts, Keychain secret keys, trading skills, tests, and docs. Forbidden paths remain out of scope.",
+      "role": "senior",
+      "runtime": "codex",
+      "seniority": "senior",
+      "write_scope": [
+        "core/types.ts",
+        "core/error/index.ts",
+        "core/secrets/keychain.ts",
+        "core/secrets/check.ts",
+        "skills/zen-trading-core/",
+        "skills/zen-trading-core/SKILL.md",
+        "skills/zen-trading-core/handler.ts",
+        "skills/zen-trading-core/tests/",
+        "skills/zen-trading-broker-alpaca/",
+        "skills/zen-trading-broker-alpaca/SKILL.md",
+        "skills/zen-trading-broker-alpaca/handler.ts",
+        "skills/zen-trading-broker-alpaca/tests/",
+        "skills/zen-trading-broker-kis/",
+        "skills/zen-trading-broker-kis/SKILL.md",
+        "skills/zen-trading-broker-kis/handler.ts",
+        "skills/zen-trading-broker-kis/tests/",
+        "docs/trading/",
+        "docs/trading/runbook-paper.md",
+        "docs/trading/risk-policy.md",
+        "docs/trading/broker-expansion-kis.md",
+        "docs/trading/checklist.md"
+      ]
+    },
+    {
+      "depends_on": [
+        "worker-01",
+        "worker-02"
+      ],
+      "effort": "high",
+      "execution_group": "serial-integration",
+      "functional_role": "AI Ops Expert Worker",
+      "id": "worker-03",
+      "model": "gpt-5.5",
+      "open_skill_source_ids": [
+        "wshobson-agents-orchestration",
+        "agent-skills-open-standard",
+        "nexus-agent-observability"
+      ],
+      "persona": "ai-ops-expert",
+      "responsibility": "Serial integration/repair after worker-01 and worker-02. Scope intentionally matches worker-02 so integration can repair any reviewed implementation file; depends_on prevents concurrent write conflicts.",
+      "role": "senior",
+      "runtime": "codex",
+      "seniority": "senior",
+      "write_scope": [
+        "core/types.ts",
+        "core/error/index.ts",
+        "core/secrets/keychain.ts",
+        "core/secrets/check.ts",
+        "skills/zen-trading-core/",
+        "skills/zen-trading-core/SKILL.md",
+        "skills/zen-trading-core/handler.ts",
+        "skills/zen-trading-core/tests/",
+        "skills/zen-trading-broker-alpaca/",
+        "skills/zen-trading-broker-alpaca/SKILL.md",
+        "skills/zen-trading-broker-alpaca/handler.ts",
+        "skills/zen-trading-broker-alpaca/tests/",
+        "skills/zen-trading-broker-kis/",
+        "skills/zen-trading-broker-kis/SKILL.md",
+        "skills/zen-trading-broker-kis/handler.ts",
+        "skills/zen-trading-broker-kis/tests/",
+        "docs/trading/",
+        "docs/trading/runbook-paper.md",
+        "docs/trading/risk-policy.md",
+        "docs/trading/broker-expansion-kis.md",
+        "docs/trading/checklist.md"
+      ]
+    },
+    {
+      "depends_on": [
+        "worker-03"
+      ],
+      "effort": "xhigh",
+      "execution_group": "serial-release",
+      "functional_role": "AI Ops Expert Worker",
+      "id": "worker-04",
+      "model": "gpt-5.5",
+      "open_skill_source_ids": [
+        "wshobson-agents-orchestration",
+        "agent-skills-open-standard",
+        "nexus-agent-observability"
+      ],
+      "persona": "ai-ops-expert",
+      "responsibility": "Check architecture, process fit, and release readiness.",
+      "role": "lead",
+      "runtime": "codex",
+      "seniority": "lead",
+      "write_scope": []
+    }
+  ]
+}

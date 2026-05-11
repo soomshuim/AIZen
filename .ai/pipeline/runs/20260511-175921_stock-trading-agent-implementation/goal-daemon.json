@@ -1,0 +1,14 @@
+{
+  "schema": "play.goal_orchestrator.daemon.v1",
+  "status": "blocked",
+  "pid": 5270,
+  "started_at": "2026-05-11T18:37:16+0900",
+  "updated_at": "2026-05-11T18:45:25+0900",
+  "repo": "/Users/zenkim_office/Project/AIZen",
+  "run_dir": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation",
+  "command": "bash /Users/zenkim_office/Project/agent-center/scripts/goal-orchestrator.sh run --daemon-worker --repo /Users/zenkim_office/Project/AIZen --run /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation --runtime auto --target claude --timeout-seconds 2700 --max-repair-rounds 1 --fresh-runtime auto --desktop-controller codex",
+  "caffeinate_pid": 5314,
+  "last_stage": "dispatch",
+  "exit_code": 2,
+  "detail": "needs_user_decision"
+}

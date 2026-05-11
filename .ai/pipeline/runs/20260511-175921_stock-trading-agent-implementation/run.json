@@ -1,0 +1,22 @@
+{
+  "schema": "play.pipeline.v1",
+  "created_at": "2026-05-11T17:59:21+0900",
+  "updated_at": "2026-05-11T18:27:17+0900",
+  "repo": "/Users/zenkim_office/Project/AIZen",
+  "slug": "stock-trading-agent-implementation",
+  "request_type": "text",
+  "request_value": "사용자가 '-play 구현 시작'으로 구현을 승인했다.\n\n구현 기준 플랜:\n- Plan 보완 run: /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update\n- Plan artifact: /Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-174922_stock-trading-plan-sequence-update/03-plan.md\n\n반드시 반영할 순서:\n1. Broker-independent core 설계/구현\n2. Alpaca paper adapter로 1차 검증\n3. KIS 국내/해외 adapter는 2차 확장 계획/스텁/계약까지 반영하되, 실계좌/API secret 없이 live 연결 금지\n4. live 후보 결정은 별도 사용자 승인 전 금지\n\nAIZen 제약:\n- TypeScript 기반\n- 기존 패턴: skills/zen-<name>/handler.ts, core/secrets Keychain-only, core/error, core/types 재사용\n- src/trading, configs/trading, .env.example 생성 금지\n- 비밀값/계좌값/토큰은 파일·로그·응답에 쓰지 않음\n\n구현 범위:\n- 실제 code implementation 시작\n- 공통 broker contract, domain types, risk policy, Alpaca paper adapter skeleton/implementation, KIS adapter contract/stub, tests, docs/runbook/checklist를 repo 구조에 맞게 추가\n- 가능한 테스트 실행 및 결과 기록\n- 실거래 주문/live endpoint 사용 금지\n\n사용자 결정:\n- 공통 코어 -> Alpaca paper -> KIS -> live 후보 순서 확정\n- 리스크 정책은 고정 익절/손절보다 변동성/낙폭 예산 기반\n- Telegram 알림 경로는 후속 운영 채널로 반영",
+  "run_dir": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation",
+  "team_analysis_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/01-team-analysis.md",
+  "review_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/02-review.md",
+  "plan_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/03-plan.md",
+  "plan_review_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/04-plan-review.md",
+  "implementation_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/05-implementation.md",
+  "record_artifact": "/Users/zenkim_office/Project/AIZen/.ai/pipeline/runs/20260511-175921_stock-trading-agent-implementation/06-record.md",
+  "review_verdict": "PASS",
+  "review_result_file": "/Users/zenkim_office/Project/AIZen/.ai/peer-review/runs/20260511-180022-claude-review-72592.md",
+  "review_exit_code": 0,
+  "plan_review_verdict": "PASS",
+  "plan_review_result_file": "/Users/zenkim_office/Project/AIZen/.ai/peer-review/runs/20260511-181720-claude-plan-80358.md",
+  "plan_review_exit_code": 0
+}
