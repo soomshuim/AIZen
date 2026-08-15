@@ -11,6 +11,9 @@ importers:
       lunar-javascript:
         specifier: ^1.7.0
         version: 1.7.7
+      playwright-core:
+        specifier: ^1.62.1
+        version: 1.62.1
     devDependencies:
       '@types/node':
         specifier: ^22.10.0
@@ -199,6 +202,11 @@ packages:
   lunar-javascript@1.7.7:
     resolution: {integrity: sha512-u/KYiwPIBo/0bT+WWfU7qO1d+aqeB90Tuy4ErXenr2Gam0QcWeezUvtiOIyXR7HbVnW2I1DKfU0NBvzMZhbVQw==}
 
+  playwright-core@1.62.1:
+    resolution: {integrity: sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==}
+    engines: {node: '>=20'}
+    hasBin: true
+
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
 
@@ -336,6 +344,8 @@ snapshots:
       resolve-pkg-maps: 1.0.0
 
   lunar-javascript@1.7.7: {}
+
+  playwright-core@1.62.1: {}
 
   resolve-pkg-maps@1.0.0: {}
 

@@ -5,6 +5,8 @@
 
 ---
 
+feature [CLD/Fable] zen-ticketlink-sprint 플랜 확정 + 스캐폴드 — 티켓링크 LG 세미-오토 예매(오픈런 자동진입+좌석 자동선택+취소표 알림, 캡차·결제는 사람). grill 8문 확정(범위·좌석 좌표맵·launchd 스케줄·취소표·알림 텔레그램 젠+와이프·와이프 계정·현장). Explore(재사용)+Plan(설계)+Team Feature Review 3역할(Eng·AIOps·QA) 만장일치 REVISE→6 High 반영(무음미스 방어·run.ts 생존주기+LaunchAgent·결제가드 시스템스코프·인접2석 위상·실패주입 게이트·런타임 trace). 좌석도 kind 투기추상화 3역할 원칙관찰 수렴→v1 확정 1종만. 스캐폴드: prepare-login.ts(영속 프로필 로그인·쿠키 지속성 검증)·config.example.json·SKILL.md + playwright-core dep. 플랜=.ai/plans/PLAN_ticketlink-sprint.md, 회의록=meetings/2026-08-16. 착수 전 정찰(Phase0) 대기: 와이프 로그인 프로필+게임 URL
+
 ## 프로젝트 개요
 
 **한 줄**: zen@plumlabs.im을 위한 확장 가능한 Personal Automation OS.

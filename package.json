@@ -20,6 +20,7 @@
     "typescript": "^5.7.0"
   },
   "dependencies": {
-    "lunar-javascript": "^1.7.0"
+    "lunar-javascript": "^1.7.0",
+    "playwright-core": "^1.62.1"
   }
 }

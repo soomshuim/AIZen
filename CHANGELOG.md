@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- zen-ticketlink-sprint 스킬 플랜 확정(rev2, Team 리뷰 반영) + 로그인 프로필 스캐폴드(prepare-login.ts·config.example.json·SKILL.md)
 
 - **Initial AIZen platform setup** — Personal Automation OS for @zen, built on OpenClaw.
   - Standard project structure: `.ai/` `.claude/` `core/` `skills/` `docs/`

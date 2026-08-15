@@ -1,4 +1,14 @@
 ---
+HANDOFF: Claude -> 젠
+Date: 2026-08-16 00:27:53
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: zen-ticketlink-sprint 플랜 확정(rev2, Team 3역할 REVISE 6 High 반영) + 로그인 스캐폴드 커밋. 구현 미착수 — Phase 0 정찰 대기.
+Next-TODO: ① [젠] prepare-login.ts 실행해 와이프 티켓링크 계정 로그인(1회) ② [젠] 정찰용 LG 홈경기 예매 URL 제공 ③ Phase 1 순수 코어(실패주입 테스트 포함)는 정찰과 병렬 착수 가능 ④ D7(canvas 폴백)·D4(pmset sudo)는 정찰 후 재확인
+Commits: (이번 커밋)
+---
+
+---
 HANDOFF: Codex -> Zen
 Date: 2026-05-05 01:51:11 +0900
 Project: /Users/zen/Project/AIZen

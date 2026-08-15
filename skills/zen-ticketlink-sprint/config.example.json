@@ -1,0 +1,20 @@
+{
+  "_comment": "config.json으로 복사해 쓰세요. config.json은 .gitignore 대상(개인 예매 정보).",
+  "target": {
+    "gameLabel": "LG 트윈스 vs KT (예시) — 2026-08-30 잠실",
+    "bookingUrl": "https://www.ticketlink.co.kr/... (로그인 후 실제 예매 페이지 URL)",
+    "openAtKst": "2026-08-23T11:00:00+09:00",
+    "_openNote": "일반예매 = 경기 D-7 오전 11시. 개막 시리즈 등 예외 경기는 실제 오픈 일시로 바꿀 것."
+  },
+  "seatPreference": {
+    "sections": ["오렌지석 3루", "블루석 3루", "레드석"],
+    "_note": "선호 구역 우선순위. 정찰(Phase 0)에서 실제 구역명·좌석도 방식 확정 후 채운다.",
+    "quantity": 2
+  },
+  "profileDir": ".aizen-cache/ticketlink/profile",
+  "handoff": {
+    "captcha": "human",
+    "payment": "human",
+    "_note": "캡차와 결제 확정은 사람이 직접. 도구는 진입·좌석탐색·결제진입까지만."
+  }
+}
