@@ -1,5 +1,15 @@
 ---
 HANDOFF: Claude -> 젠
+Date: 2026-08-24 03:30:00
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: 바운티 셋업 최종 종료(젠 선언) — Tailscale GUI 앱 정식 전환(노드 macbookpro, userspace 우회 폐기·임시 노드 logout), LLM API 직접 통신·SSH 원형 명령 검증, Cherry Studio 설치·길드 서버(LM Studio provider) 연결. CherryIN(앱 내장 클라우드) 오라우팅 실측 → 젠이 LM Studio 그룹 qwen으로 전환, CherryIN off 안내 완료.
+Next-TODO: ① 바운티 본작업은 고정 태스크 없음 — 협업 진행하며 젠이 방향 제시(재상정 금지) ② 재부팅 주의사항 소멸(GUI 앱 자동 기동) ③ 티켓링크 스프린트는 기존 HANDOFF(Phase 0 정찰 대기) 그대로 유지
+Commits: (이번 커밋)
+---
+
+---
+HANDOFF: Claude -> 젠
 Date: 2026-08-24 02:51:30
 Project: /Users/zenkim_office/Project/AIZen
 Agent: Claude

@@ -5,6 +5,8 @@
 
 ---
 
+chore [CLD/Fable] 2026-08-24 바운티 셋업 최종 종료(젠 선언) — Tailscale GUI 정식 전환(userspace 우회 전부 폐기, 안내문 원형 주소·명령 그대로 작동), Cherry Studio 설치·길드 LLM 연결(LM Studio provider, qwen3.6-35b-a3b). 실측 교훈: 앱 내장 CherryIN 클라우드가 켜져 있으면 대화가 길드 서버 대신 클라우드로 나감 → 토글 off 권장. 스튜디오 sshd 포트 포워딩 금지 실측(바운티 가이드 반영 사항).
+
 chore [CLD/Fable] 2026-08-24 바운티 온보딩 완료 — Tailscale userspace 모드 연결(sudo 불가 우회, 재부팅 시 수동 재기동), hkg@Mac Studio(100.79.218.35) SSH 검증(안내문 원형 명령 작동, ~/.ssh/config 프록시 + 별칭 hkg-studio), 로컬 LLM API(:1234/v1) 모델 4종 응답 확인. 본작업 갈림길 태스크(실행 플랜 vs 문서 리뷰)는 젠 지시로 삭제 — 협업 진행하며 논의, 재상정 금지. AIZen 코드 변경 없음.
 
 chore [CLD/Fable] 마켓핏랩 길드 바운티 온보딩 — 맥스튜디오('맥미니'는 오기, 2026-08-24 정정) 1인 1에이전트 인프라 바운티 참여 확정(글로벌 메모리 project_marketfitlab-agent-bounty 등재, AIZen 자산 openclaw-setup·secrets·launchd·승인게이트 재활용 예정). Tailscale mfitlab.com tailnet 가입 완료(soomshuim@gmail.com, 관리자 승인 대기 상태). SSH 공개키는 신규 발급 없이 맥북프로 기존 키(~/.ssh/id_ed25519.pub, GitHub soomshuim 등록 키) 재사용 — .ssh 생성일 실측으로 이 맥 출생 확인, 판매한 구 맥미니는 초기화 후 양도 확인. .pub 파일로 관리자 전달 완료. AIZen 코드 변경 없음.
