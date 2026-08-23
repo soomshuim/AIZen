@@ -1,5 +1,15 @@
 ---
 HANDOFF: Claude -> 젠
+Date: 2026-08-23 17:38:11
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: 마켓핏랩 바운티(맥미니 길드원 1인 1에이전트 셋업+가이드) 온보딩 완료 — Tailscale mfitlab.com 가입(관리자 승인 대기), SSH 공개키(.pub 파일) 관리자 전달. AIZen 코드 변경 없음.
+Next-TODO: ① [젠] tailnet 승인·hkg authorized_keys 등록 완료 확인 ② 승인 후 이 맥북에 Tailscale 앱 설치(brew install --cask tailscale) + hkg 계정 SSH 접속 테스트 ③ 바운티 진행 방향 결정 대기(실행 플랜 수립 vs 바운티 문서 리뷰 — 젠 답변 필요) ④ 티켓링크 스프린트는 기존 HANDOFF(Phase 0 정찰 대기) 그대로 유지
+Commits: (이번 커밋)
+---
+
+---
+HANDOFF: Claude -> 젠
 Date: 2026-08-16 00:27:53
 Project: /Users/zenkim_office/Project/AIZen
 Agent: Claude
