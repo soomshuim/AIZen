@@ -5,6 +5,8 @@
 
 ---
 
+chore [CLD/Fable] 2026-08-24 바운티 온보딩 완료 — Tailscale userspace 모드 연결(sudo 불가 우회, 재부팅 시 수동 재기동), hkg@Mac Studio(100.79.218.35) SSH 검증(안내문 원형 명령 작동, ~/.ssh/config 프록시 + 별칭 hkg-studio), 로컬 LLM API(:1234/v1) 모델 4종 응답 확인. 본작업 갈림길 태스크(실행 플랜 vs 문서 리뷰)는 젠 지시로 삭제 — 협업 진행하며 논의, 재상정 금지. AIZen 코드 변경 없음.
+
 chore [CLD/Fable] 마켓핏랩 길드 바운티 온보딩 — 맥스튜디오('맥미니'는 오기, 2026-08-24 정정) 1인 1에이전트 인프라 바운티 참여 확정(글로벌 메모리 project_marketfitlab-agent-bounty 등재, AIZen 자산 openclaw-setup·secrets·launchd·승인게이트 재활용 예정). Tailscale mfitlab.com tailnet 가입 완료(soomshuim@gmail.com, 관리자 승인 대기 상태). SSH 공개키는 신규 발급 없이 맥북프로 기존 키(~/.ssh/id_ed25519.pub, GitHub soomshuim 등록 키) 재사용 — .ssh 생성일 실측으로 이 맥 출생 확인, 판매한 구 맥미니는 초기화 후 양도 확인. .pub 파일로 관리자 전달 완료. AIZen 코드 변경 없음.
 
 feature [CLD/Fable] zen-ticketlink-sprint 플랜 확정 + 스캐폴드 — 티켓링크 LG 세미-오토 예매(오픈런 자동진입+좌석 자동선택+취소표 알림, 캡차·결제는 사람). grill 8문 확정(범위·좌석 좌표맵·launchd 스케줄·취소표·알림 텔레그램 젠+와이프·와이프 계정·현장). Explore(재사용)+Plan(설계)+Team Feature Review 3역할(Eng·AIOps·QA) 만장일치 REVISE→6 High 반영(무음미스 방어·run.ts 생존주기+LaunchAgent·결제가드 시스템스코프·인접2석 위상·실패주입 게이트·런타임 trace). 좌석도 kind 투기추상화 3역할 원칙관찰 수렴→v1 확정 1종만. 스캐폴드: prepare-login.ts(영속 프로필 로그인·쿠키 지속성 검증)·config.example.json·SKILL.md + playwright-core dep. 플랜=.ai/plans/PLAN_ticketlink-sprint.md, 회의록=meetings/2026-08-16. 착수 전 정찰(Phase0) 대기: 와이프 로그인 프로필+게임 URL

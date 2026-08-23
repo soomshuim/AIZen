@@ -1,5 +1,15 @@
 ---
 HANDOFF: Claude -> 젠
+Date: 2026-08-24 02:51:30
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: 바운티 온보딩 전체 완료 — Tailscale userspace 연결(jen-ui-macbookpro), hkg@Mac Studio(100.79.218.35) SSH 검증(~/.ssh/config 프록시 자동화·별칭 hkg-studio), 로컬 LLM API(:1234/v1) 응답 확인. 공용 장비 표기 맥미니→맥스튜디오 정정. AIZen 코드 변경 없음.
+Next-TODO: ① 바운티 본작업 방향 고정 태스크 없음 — 2026-08-24 젠 지시로 갈림길(실행 플랜 vs 문서 리뷰) 태스크 삭제, 협업 진행하며 논의(재상정 금지) ② 이 맥 Tailscale은 userspace 임시 기동(재부팅 시 수동 재기동, GUI 앱 교체 미결) ③ 티켓링크 스프린트는 기존 HANDOFF(Phase 0 정찰 대기) 그대로 유지
+Commits: (이번 커밋)
+---
+
+---
+HANDOFF: Claude -> 젠
 Date: 2026-08-23 17:38:11
 Project: /Users/zenkim_office/Project/AIZen
 Agent: Claude
