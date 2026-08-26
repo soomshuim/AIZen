@@ -1,5 +1,15 @@
 ---
 HANDOFF: Claude -> 젠
+Date: 2026-08-26 09:46:09
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: 길드 맥스튜디오 로컬 LLM TPS 실측 완료(qwen3.6-35b-a3b 81 / qwen3.8-27b-uncensored 29 / gemma-4-31b-it 19 tok/s). 글로벌 메모리 reference_guild-mac-studio-llm-tps 등재. HKG V1 모집 글은 2026-08-25 확정 상태 그대로, 게시는 젠이 직접(미실행).
+Next-TODO: ① [젠] HKG V1 모집 글 게시 → 8/28(금) 밤 자정 접수 마감 (최종본 docs/hkg-bounty/v1-recruit-post.txt, 수정 없이 확정) ② [젠] 접수 결과 공유 = 설문 2(선정자 피처 리퀘스트 → 우선순위 → P0 확정) 문항 설계 착수 신호 — 현재 미착수, 젠 지시로 접수 결과 확인 후로 연기 ③ [젠 결정 대기] hkg.sh:21 기본 모델 qwen3.8-27b-uncensored(29 tok/s) 유지 여부 — qwen/qwen3.6-35b-a3b가 2.8배 빠르지만 uncensored 선택이 의도일 수 있어 변경하지 않음 ④ [젠] 8/28(금) 오후 슬랙 싱크 — 이 시점 상태는 "접수 중", 설문2·P0 확정은 9/1 이후임을 도에게 공유하는 것이 안전 ⑤ [미배정 리스크] 회사 슬랙·노션 인티그레이션 허용 확인 주체가 회의에서 정해지지 않음 ⑥ 티켓링크 스프린트는 기존 HANDOFF(Phase 0 정찰 대기) 그대로 유지. 재제안 금지: 모집 글 마감일·피저빌리티 기준 노출·태그 형식 3건은 2026-08-25 젠 종결.
+Commits: (이번 커밋)
+---
+
+---
+HANDOFF: Claude -> 젠
 Date: 2026-08-25 18:14:27
 Project: /Users/zenkim_office/Project/AIZen
 Agent: Claude
