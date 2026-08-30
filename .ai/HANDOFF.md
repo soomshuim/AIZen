@@ -1,5 +1,15 @@
 ---
 HANDOFF: Claude -> 젠
+Date: 2026-08-30 20:51:40
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: HKG 설문 2 발송 완료 — 젠 리라이트 최종본을 모니카·니키에게 슬랙 DM 발송(2026-08-30). v1-p0-questions.md를 발송 원문 기준으로 갱신, 회신 대기 중.
+Next-TODO: ① [젠] 모니카·니키 회신 공유 = P0 확정 착수 신호(니키는 B-0 답변으로 봇 2개 중 1개 선택, 모니카는 채널 목록 후속 질문 필요) ② [젠·도] 회사 슬랙·노션·구글 인티그레이션 허용 확인 주체 지정 — 실블로커 후보(폴·진배 9/8까지 통신 불가) ③ [젠 결정 대기] hkg.sh:21 기본 모델 유지 여부(기존 항목 유지) ④ 티켓링크 스프린트 Phase 0 정찰 대기 그대로 유지. V1 런칭 목표 9/8(화).
+Commits: (이번 커밋)
+---
+
+---
+HANDOFF: Claude -> 젠
 Date: 2026-08-30 18:48:43
 Project: /Users/zenkim_office/Project/AIZen
 Agent: Claude

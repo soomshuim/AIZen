@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- HKG 설문 2 발송 완료 — 젠 리라이트 최종본을 모니카·니키에게 슬랙 DM 발송(2026-08-30), v1-p0-questions.md를 발송 원문 기준으로 갱신
 - HKG 바운티: 접수 결과(모니카·니키 2건) 1안 확정 기록 + 설문 2 P0 확정 질문지 초안 작성 (docs/hkg-bounty/v1-p0-questions.md, 발송 전 젠 리라이트 대기)
 
 ### Added
