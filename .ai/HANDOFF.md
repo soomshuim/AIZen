@@ -1,5 +1,15 @@
 ---
 HANDOFF: Claude -> 젠
+Date: 2026-08-30 18:48:43
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: HKG 접수 마감 결과(모니카·니키 2건) + 젠 1안 확정(두 케이스 진행, 우선순위 선별 없음) 기록. 설문 2 = P0 확정 질문지 초안 작성 완료(docs/hkg-bounty/v1-p0-questions.md) — 발송 전 젠 리라이트 대기.
+Next-TODO: ① [젠] 질문지 초안 리라이트/승인 → 확정 시 발송용 텍스트 클립보드 복사 + 최종본 커밋 ② [젠] 모니카·니키에게 발송 → 회신 수신 후 P0 확정(니키는 B-0 답변으로 봇 1개 선택) ③ [젠·도] 회사 슬랙·노션·구글 인티그레이션 허용 확인 주체 지정 — 실블로커 후보 승격(두 케이스 모두 회사 슬랙 읽기 필요, 모니카는 지메일·캘린더도 필요, 폴·진배 9/8까지 통신 불가) ④ [젠 결정 대기] hkg.sh:21 기본 모델 qwen3.8-27b-uncensored 유지 여부(기존 항목 유지) ⑤ 티켓링크 스프린트 Phase 0 정찰 대기 그대로 유지. V1 런칭 목표 9/8(화).
+Commits: (이번 커밋)
+---
+
+---
+HANDOFF: Claude -> 젠
 Date: 2026-08-26 09:46:09
 Project: /Users/zenkim_office/Project/AIZen
 Agent: Claude

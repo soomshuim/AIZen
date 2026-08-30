@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- HKG 바운티: 접수 결과(모니카·니키 2건) 1안 확정 기록 + 설문 2 P0 확정 질문지 초안 작성 (docs/hkg-bounty/v1-p0-questions.md, 발송 전 젠 리라이트 대기)
+
 ### Added
 - zen-ticketlink-sprint 스킬 플랜 확정(rev2, Team 리뷰 반영) + 로그인 프로필 스캐폴드(prepare-login.ts·config.example.json·SKILL.md)
 
