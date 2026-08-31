@@ -1,5 +1,15 @@
 ---
 HANDOFF: Claude -> 젠
+Date: 2026-08-31 23:27:53
+Project: /Users/zenkim_office/Project/AIZen
+Agent: Claude
+Summary: HKG 설문 2 회신(모니카·니키) 분석 + P0 문서 신설, 니키 봇=주간 다이제스트 확정. 젠·도 싱크 회의록을 개인판 회의록 체인(검증→웹 드래그 교정 2라운드→확정)으로 정식 확정(ff513b7)·PDF 전달. 개인판 meeting-notes 래퍼 배선 완료(예외=슬랙·회사레포 커밋 2종).
+Next-TODO: ① [젠] 모니카·니키 심화 인터뷰 — 리터러시·귀찮음·토큰 동기 판별 + 모니카 퀘스트봇 MCP 인지 확인(채널 목록 DM·니키 재문의는 인터뷰에 흡수). 인터뷰 결과가 P0 재검토 입력 ② [도] 헤르메스 세팅+계정·보안 PoC / 폴 맥스튜디오 접근 해결 ③ [젠·도] 비공개 채널 접근 권한 트랙(승인 주체 지정) — 다이제스트 봇·모니카 케이스 공통 블로커 ④ [공동] 다음 주 재싱크 + 슬랙 인터페이스 적합성 검토(9월 초) ⑤ [젠 결정 대기] hkg.sh:21 기본 모델 유지 여부(기존 항목) ⑥ 티켓링크 스프린트 Phase 0 정찰 대기 유지. V1 런칭 목표 9/8(화).
+Commits: (이번 커밋)
+---
+
+---
+HANDOFF: Claude -> 젠
 Date: 2026-08-30 20:51:40
 Project: /Users/zenkim_office/Project/AIZen
 Agent: Claude
